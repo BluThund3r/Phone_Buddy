@@ -4,7 +4,17 @@ const sharp = require("sharp");
 const {Client} = require("pg");
 const sass = require("sass");
 const ejs = require("ejs");
-var client = new Client({user:"test_user", password:"15082002", database:"phone_buddy", host:"localhost", port:5432});
+// var client = new Client({user:"test_user", password:"15082002", database:"phone_buddy", host:"localhost", port:5432});
+ var client = new Client({
+   user:"yzwwchepmxctbu", 
+   password:"0dee359f180215ae7d511125a954388a407ff4b2db2ba72a31b9bb685a54b036", 
+   database:"dd3g6annr1nmqm", 
+   host:"ec2-52-203-118-49.compute-1.amazonaws.com", 
+   port:5432, 
+   ssl: {
+    rejectUnauthorized: false
+   }
+});
 const formidable= require('formidable');
 const crypto= require('crypto');
 const session= require('express-session');
@@ -91,11 +101,8 @@ app.get(["/", "/index", "/home"], function(req, res){
 
 app.get("/products", function(req, res){
   client.query("select min(pret) from accessories", function(err, rezMinp){
-    console.log(rezMinp)
     client.query("select max(pret) from accessories", function(err, rezMaxp){
-      console.log(rezMaxp)
       client.query("select distinct color from accessories", function(err, rezCulori){
-        console.log(rezCulori)
         console.log(err)
         if(req.query.type){
           conditie = `categorie = '${req.query.type}'`;
@@ -104,7 +111,6 @@ app.get("/products", function(req, res){
           conditie = "1 = 1";
         }
         client.query("select * from accessories where " + conditie, function(err, rezQuery){
-          console.log(rezQuery);
           console.log(err);
           res.render("pagini/products", {produse: rezQuery.rows, culori: rezCulori.rows, maxPrice: rezMaxp.rows[0], minPrice: rezMinp.rows[0]});
         });
