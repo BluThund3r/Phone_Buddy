@@ -1,0 +1,208 @@
+@use 'sass:list';
+$transformari_4: ((0%, 0%), (0%, -50%), (-50%, 0%), (-50%, -50%));
+$transformari_9: ((0%, 0%), (-66.66%, 0%), (-33.33%, 0%), (-33.33%, -33.33%), (-66.66%, -33.33%), (-66.66%, -66.66%), (0%, -33%), (-33.33%, -66.66%), (0%, -66.66%));
+$transformari_16: ((0%, 0%), (-25%, 0%), (-50%, 0%), (-75%, 0%), (0%, -25%), (-25%, -25%), (-50%, -25%), (-75%, -25%), (0%, -50%), (-25%, -50%), (-50%, -50%), (-75%, -50%), (0%, -75%), (-25%, -75%), (-50%, -75%), (-75%, -75%));
+$transformare_i:skewX(0deg) !default;
+$transformare_f:skewX(90deg) !default;
+$nrimag: 4 !default;
+
+
+#cont-galerie-animata{
+  margin:auto;
+  margin-top:50px;
+	padding:0 !important;
+	width: 500px !important;
+  height: 333px !important;
+  position: relative;
+  overflow: hidden;
+  border: 10px solid transparent;
+	border-image:url(/Sources/pictures/border_image.png) 30;
+}
+
+#cont-galerie-animata:hover #galerie-animata{
+	animation-play-state: paused;
+}
+
+#galerie-animata{
+	display: grid;
+	padding:0px !important;
+    @if $nrimag == 4{
+      width:1000px;
+      grid-template-columns: repeat(2, 500px);
+    }
+
+    @else if $nrimag == 9{
+      grid-template-columns: repeat(3, 500px);
+      width:1500px;
+    }
+
+    @else if $nrimag == 16{
+      grid-template-columns: repeat(4, 500px);
+      width:2000px;
+    }
+    
+    grid-template-rows: 333px 333px;
+    grid-row-gap: 0;
+    grid-column-gap: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation-name: gal_exemplu;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: #{$nrimag * 5}s;
+}
+#galerie-animata figcaption{
+	position:absolute;
+	bottom:0;
+	background:lightgrey;
+	color:black;
+	width:100%;
+	text-align:center;
+}
+#galerie-animata figure{
+	top:0;
+	padding:0px;
+	margin:0;
+	position:relative;
+	width:500px;
+	height:333px;
+}
+
+#galerie-animata img{
+	width:100%;
+	padding:0;
+	height:100%;
+	border:none;
+	border-radius:0px;
+	width: auto;
+}
+
+
+// #galerie-animata figure:nth-of-type(7){/* cea mai de deasupra*/
+// 	animation-delay:0s;
+// }
+// #galerie-animata figure:nth-of-type(6){
+// 	animation-delay:3s;
+// }
+// #galerie-animata figure:nth-of-type(5){
+// 	animation-delay:6s;
+// }
+// #galerie-animata figure:nth-of-type(4){
+// 	animation-delay:9s;
+// }
+// #galerie-animata figure:nth-of-type(3){
+// 	animation-delay:12s;
+// }
+// #galerie-animata figure:nth-of-type(2){
+// 	animation-delay:15s;
+// }
+// #galerie-animata figure:nth-of-type(1){
+// 	animation-delay:18s;
+// }
+
+/*cum calculam timpii:
+- avem 7 poze; vrem pentru fiecare un timp de afisare de 1.5 secunde si o trecere spre urmatoarea poza de 1.5 secunde
+- rezulta 3 secunde pentru fiecare imagine
+- 7imagini * 3secunde =21 secunde in total pentru animatie (animation-duration) si fiecare poza cu un delay = 3* numarul de ordine
+- momentul in care trebuie ascunsa poza si pusa in spatele celorlalte (ca sa isi astepte randul pentru noua animatie:
+il calculam cu formula  timp_afisare(normal+trecerea la urmatoarea poza)/timp_total*100 = 3/21*100 =  14.285714(aproximativ)
+100%..... 21s
+x%........3s
+
+- calculam 100-14.285714=85.714286 - la acest moment imaginea trebuie sa se vada in spatele imaginii care se afiseaza in mod curent (ca sa se vada si cat timp se realizeaza efectul de schimbare a imaginii
+*/
+
+@keyframes gal_exemplu{ 
+	// @if $nrimag == 4{
+	// 	0%{
+  //       transform-origin: 0% 0%;
+  //       transform:scale(0.5);
+  //   }
+
+  //   12.5%{
+  //     transform:scale(1);
+  //   }
+    
+  //   25%{
+  //     transform:scale(0.5) translate(0%, 0%);
+  //   }
+
+  //   37.5%{
+  //     transform:scale(1) translate(0%, -50%);
+  //   }
+    
+  //   50%{
+  //     transform:scale(0.5) translate(0%, 0%);
+  //   }
+
+  //   62.5%{
+  //     transform:scale(1) translate(-50%, 0%);
+  //   }
+    
+  //   75%{
+  //     transform:scale(0.5) translate(0%, 0%);
+  //   }
+
+  //   87.5%{
+  //     transform:scale(1) translate(-50%, -50%);
+  //   }
+    
+  //   100%{
+  //     transform-origin:0% 0%;
+  //     transform:scale(0.5) translate(0%, 0%);
+  //   }
+	// }
+
+	@for $i from 0 to $nrimag{
+    $percentage: $i * 100 / $nrimag;
+		#{$percentage}%{
+      @if $i == 0{
+        transform-origin: 0% 0%;
+      }
+			@if $nrimag == 4{
+        transform: scale(0.5) translate(0%, 0%);
+      }
+      @else if $nrimag == 9{
+        transform: scale(33.33%) translate(0%, 0%);
+      }
+      @else{
+        transform: scale(0.25) translate(0%, 0%);
+      }
+		}
+
+    #{$percentage + 100 / $nrimag / 2}%{
+      @if $nrimag == 4{
+        transform: scale(1) translate(list.nth(list.nth($transformari_4,$i + 1),1), list.nth(list.nth($transformari_4,$i + 1),2));
+      }
+      
+      @else if $nrimag == 9{
+        transform: scale(1) translate(list.nth(list.nth($transformari_9,$i + 1),1), list.nth(list.nth($transformari_9,$i + 1),2))
+      }
+
+      @else{
+        transform: scale(1) translate(list.nth(list.nth($transformari_16,$i + 1),1), list.nth(list.nth($transformari_16,$i + 1),2))
+      }
+    }
+	}
+
+  100%{
+    transform-origin: 0% 0%;
+    @if $nrimag == 4{
+      transform: scale(0.5) translate(0%, 0%);
+    }
+    @else if $nrimag == 9{
+      transform: scale(33.33%) translate(0%, 0%);
+    }
+    @else{
+      transform: scale(0.25) translate(0%, 0%);
+    }
+  }
+}
+
+@media screen and (max-width:1200px){
+	#cont-galerie-animata{
+		display: none;
+	}
+}

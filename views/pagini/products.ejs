@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description"
+            content="Get the best quality accesories you cand find for your smartphone right here, with just a simple click!">
+        <meta name="keywords" content="fitness tracker, micro sd, selfie stick, phone charger, headphones, earphones, earbuds, phone case, pop-socket, screen protector, car phone mount, waterproof phone pouch, phone armband">
+        <link rel="stylesheet" href="/Sources/css/produse.css" type="text/css" />
+        <title>Phone Buddy - Products</title>
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/Sources/js/produse.js></script>
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+
+        <h2>Products</h2>
+        <label> Name: <input type="text" id="inp-nume"></label>
+        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
+        <div> Discount:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+            <p><label>Low discount (discount &lt; 15%)
+                <input id="i_rad1"  name="gr_rad" value="0:15" type="radio"/>
+            </label></p>
+            <p><label>Medium discount (15% &le; discount &lt; 40%)
+                <input id="i_rad2"  name="gr_rad" value="15:40" type="radio"/>
+            </label>
+            <p><label>High discount (40% &le; 75%)
+                <input id="i_rad3" name="gr_rad" value="40:75" type="radio"/>
+            </label>
+            <p><label> All
+                <input id="i_rad4" checked name="gr_rad" value="all" type="radio"/>
+            </label>
+        </div>
+
+        <label style="display:block;">Category:
+            <input list="id_lista" id="i_datalist" value="all">
+            <datalist id="id_lista">
+                <option value="all" selected></option>
+                <%
+                    for(let categ of locals.categorii){
+                %>
+                    <option value="<%- categ.unnest.split('_').join(' ') %>"></option>
+                <% } %>
+            </datalist>
+        </label>
+
+        
+        <label style="display:block;"> Min price: <%- locals.minPrice.min %> RON <input type="range" id="inp-pret-min" value="<%- locals.minPrice.min %>" min="<%- locals.minPrice.min %>"  max="<%- locals.maxPrice.max %>"> <%- locals.maxPrice.max %> RON <span id="infoRangeMin">(<%- locals.minPrice.min %>)</span></label>
+        <label style="display:block;"> Max price: <%- locals.minPrice.min %> RON <input type="range" id="inp-pret-max" value="<%- locals.maxPrice.max %>" min="<%- locals.minPrice.min %>"  max="<%- locals.maxPrice.max %>"> <%- locals.maxPrice.max %> RON <span id="infoRangeMax">(<%- locals.maxPrice.max %>)</span></label>
+        <label style="display:block;">Color:
+            <select id="inp-culoare">
+                <option id="sel-toate" selected value="all">all</option>
+                <% for (let culoare of locals.culori) { %>
+                    <option value="<%- culoare.color %>"><%- culoare.color %> </option>
+                <% } %>
+            </select>
+        </label>
+
+        <label style="display:block;">Returnable
+            <input id="i_check1" name="gr_chck" value="10" type="checkbox"/> <br>
+        </label>
+
+        <label style="display:block;">Description contains:
+            <textarea id="inp-descriere"></textarea>
+        </label>
+
+        <label style="display:block;">Materials:
+            <select id="inp-materiale" multiple size="3">
+                <option value="plastic">plastic</option>
+                <option value="metal">metal</option>
+                <option value="glass">glass</option>
+                <option value="silicon">silicon</option>
+                <option value="copper">copper</option>
+                <option value="rubber">rubber</option>
+                <option value="textile">textile</option>
+            </select>
+        </label>
+
+        <p>
+        <button id="filtrare">Filter</button> <button id="resetare">Reset</button><br/>
+        <button id="sortCrescNume">Sort ascending by name and description length</button>
+        <button id="sortDescrescNume">Sort descending by name and description length</button><br>
+        <button id="calculare">Sum of the prices of the displayed items</button> 
+        
+        </p>
+        
+        <section id="produse">
+            <div class="grid-produse">
+                <% for( let prod of locals.produse) { %>
+                    <article class="produs" >
+                        <h3 class="nume">Name: <a href="/product/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                        <h4 class="id">Id: <span class="val-id">art<%- prod.id %></span></h4>
+                        <p class="categorie">Category: <span class="val-categorie"><%- prod.categorie.split("_").join(" ") %></span></p>
+                        <p class="categorie">Description:<span class="val-descriere"> <%- prod.descriere %></span></p>
+                        <div class="info-prod">
+                                <figure id="imag-produs">
+                                    <a href="/product/<%-prod.id %>" ><img src="/Sources/pictures/products/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                                </figure>
+
+                                <table id="detalii-produs">
+                                    <tr>
+                                        <td>Price: </td> <td><span class="val-pret"><%- prod.pret%></span> RON</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Color: </td><td><span class="val-culoare"><%- prod.color %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Materials: </td><td><span class="val-materiale"><% for(let i = 0; i < prod.materiale.length; i ++ ){ if(i < prod.materiale.length - 1){%> <%- prod.materiale[i] + ", " %> <% } else{ %> <%- prod.materiale[i]%> <% }}%></span></td>
+                                    </tr>
+                                    <tr>
+                                        <% 
+                                            const days = {
+                                                "Mon": "Luni",
+                                                "Tue": "Marti",
+                                                "Wed": "Miercuri",
+                                                "Thu": "Joi",
+                                                "Fri": "Vineri",
+                                                "Sat": "Sambata",
+                                                "Sun": "Duminica"
+                                            };
+
+                                            const months = {
+                                                "Jan": "Ianuarie",
+                                                "Feb": "Februarie",
+                                                "Mar": "Martie",
+                                                "Apr": "Aprilie",
+                                                "May": "Mai",
+                                                "Jun": "Iunie",
+                                                "Jul": "Iulie",
+                                                "Aug": "August",
+                                                "Sep": "Septembrie",
+                                                "Oct": "Octombrie",
+                                                "Nov": "Noiembrie",
+                                                "Dec": "Decembrie"
+                                            }
+
+                                            const temp_data = prod.data_adaugare.toString().split(" ");
+                                        %>
+                                        <td>Date: </td> <td><span class="val-data"> <time><%- temp_data[2] %>/<%- months[temp_data[1]]%>/<%- temp_data[3] %> (<%- days[temp_data[0]]%>)</time></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Returnable: </td> <td><span class="val-ret"><%- prod.returnable ? "Yes" : "No" %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount: </td> <td><span class="val-discount"><%- prod.discount %></span></td>
+                                    </tr>
+                                </table>
+                            <!-- <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p> -->
+                        </div><br><br><br><br><br><br>
+                        <div id="select-wrapper">
+                            <label class="selecteaza-cos">
+                                Select<br/>
+                                <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                            </label>
+                        </div>
+                    </article>
+                <% }%>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

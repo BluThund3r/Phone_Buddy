@@ -1,0 +1,149 @@
+{
+	"cale_galerie":"Sources/pictures/galerie",
+	"imagini": [
+		{
+			"cale_fisier":"armband.png",
+			"titlu":"Armband",
+			"alt":"armband image", 
+			"text_descriere":"Armband",
+			"luni": ["iunie", "septembrie", "decembrie", "octombrie", "august", "iulie", "noiembrie", "martie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"bluetooth_speaker.png",
+			"titlu":"BT Speaker",
+			"alt":"bluetooth speaker image", 
+			"text_descriere":"Bluetooth Speaker",
+			"luni": ["iunie", "iulie", "septembrie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"car_holder.png",
+			"titlu":"Car Holder",
+			"alt":"car phone holder image", 
+			"text_descriere":"Car Phone Holder",
+			"luni": ["aprilie", "iunie", "septembrie", "decembrie", "mai", "iulie", "ianuarie", "martie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"charger_1.png",
+			"titlu":"Phone Charger",
+			"alt":"phone charger image", 
+			"text_descriere":"Phone Charger",
+			"luni": ["septembrie", "octombrie", "noiembrie", "ianuarie", "martie", "februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"charger_2.png",
+			"titlu":"Lightning Phone Charger",
+			"alt":"lightning phone charger image", 
+			"text_descriere":"Lightning Phone Charger",
+			"luni": ["aprilie", "iulie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"earbuds.png",
+			"titlu":"Earbuds",
+			"alt":"earbuds image", 
+			"text_descriere":"Earbuds",
+			"luni": ["aprilie", "mai", "august", "iulie", "noiembrie", "ianuarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"earphones.png",
+			"titlu":"Earphones",
+			"alt":"earphones image", 
+			"text_descriere":"Earphones",
+			"luni": ["ianuarie", "octombrie", "iulie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"fitness_tracker.png",
+			"titlu":"Fitness Tracker",
+			"alt":"fitness tracker image", 
+			"text_descriere":"Fitness Tracker",
+			"luni": ["aprilie", "septembrie", "octombrie", "august", "ianuarie", "februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"huse_1.png",
+			"titlu":"Colorful Cases",
+			"alt":"colorful cases image", 
+			"text_descriere":"Colorful Cases",
+			"luni": ["aprilie", "august", "noiembrie", "iulie", "februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"huse_2.png",
+			"titlu":"Classy Cases",
+			"alt":"classy phone cases image", 
+			"text_descriere":"Classy Phone Cases",
+			"luni": ["aprilie", "iunie", "noiembrie", "iulie", "martie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"micro_sd.png",
+			"titlu":"Micro-SD Card",
+			"alt":"micro-sd card image", 
+			"text_descriere":"Micro-SD Card",
+			"luni": ["aprilie", "iunie", "septembrie", "mai", "august", "februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"pop_socket.png",
+			"titlu":"Pop Socket",
+			"alt":"pop socket image", 
+			"text_descriere":"Pop Socket",
+			"luni": ["octombrie", "februarie", "martie"],
+			"credits": "crazydavepromo.co.uk"
+		},
+		{
+			"cale_fisier":"protector.png",
+			"titlu":"Screen Protector",
+			"alt":"screen protector image", 
+			"text_descriere":"Screen Protector",
+			"luni": ["aprilie", "iunie", "septembrie", "octombrie", "mai", "august", "iulie", "noiembrie", "februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"selfie_stick.png",
+			"titlu":"Selfie Stick",
+			"alt":"selfie stick image", 
+			"text_descriere":"Selfie Stick",
+			"luni": ["aprilie", "septembrie", "decembrie", "august", "ianuarie", "februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"smartwatch.png",
+			"titlu":"Smartwatch",
+			"alt":"smartwatch image", 
+			"text_descriere":"Smartwatch",
+			"luni": ["octombrie", "august", "iulie", "septembrie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"w_charger_1.png",
+			"titlu":"White Wireless Charger",
+			"alt":"white wireless charger image", 
+			"text_descriere":"White Wireless Charger",
+			"luni": ["iunie", "mai", "iulie", "noiembrie", "martie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"w_charger_2.png",
+			"titlu":"Black Wireless Charger",
+			"alt":"black wireless charger image", 
+			"text_descriere":"Black Wireless Charger",
+			"luni": ["februarie"],
+			"credits": ""
+		},
+		{
+			"cale_fisier":"waterproof_pouch.png",
+			"titlu":"Waterproof Phone Bag",
+			"alt":"waterproof phone bag image", 
+			"text_descriere":"Waterproof Phone Bag",
+			"luni": ["septembrie", "decembrie", "august", "martie", "februarie"],
+			"credits": ""
+		}
+	]
+}

@@ -1,0 +1,22 @@
+$row: 1;
+@for $i from 1 through 18{
+    @if $i % 3 == 1{
+        #galerie-statica figure:nth-child(#{$i}){
+            grid-area: #{$row}/1/#{$row + 1}/2;
+        }
+    }
+   
+    @if $i % 3 == 2{
+        #galerie-statica figure:nth-child(#{$i}){
+            grid-area: #{$row}/3/#{$row + 1}/4;
+        }
+        $row: $row + 1;
+    }
+
+    @if $i % 3 == 0{
+        #galerie-statica figure:nth-child(#{$i}){
+            grid-area: #{$row}/2/#{$row + 1}/3;
+        }
+        $row: $row + 1;
+    }
+}

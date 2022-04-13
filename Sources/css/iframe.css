@@ -1,0 +1,78 @@
+.iframescreen{
+    display:flex;
+    background-color: transparent !important;   
+    position:relative;
+}
+
+.iframe-tabs{
+    background-color: rgba(255, 255, 255, 0) !important;
+    position:relative;
+    left:0.75em;
+}
+
+
+.iframescreen a{
+    font-size:0.8em;
+    overflow:hidden;
+    line-height:60px;
+    height:60px;
+    width: 150px;
+    display:block;
+    background:var(--background-color);
+    color:var(--text-color);    
+    box-shadow:5px 0 3px 2px var(--border-color) inset;
+    margin-bottom: 2px;
+    border-right:none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align:center;
+    transition: background-color 300ms linear;
+}
+
+.iframescreen iframe{
+    max-width:500px;
+    display:block;
+    width:100%;
+    border-right: 7px solid var(--border-color);
+    border-bottom: 7px solid var(--border-color);
+    border-top: 7px solid var(--main-color);
+    border-left: 7px solid var(--main-color);
+}
+
+.iframescreen a:hover{
+    background-color: var(--border-color);
+    cursor:pointer;
+}
+
+@media screen and (max-width:1200px){
+    iframe{
+        max-width:300px;
+        width:20%;
+    }
+
+    .iframe-tabs{
+        left:.75em;
+    }
+
+    .iframescreen a{
+        width: 120px;
+        height:40px;
+        line-height:18px;
+    }
+}
+
+@media screen and (max-width:750px){
+    iframe{
+        width:60% !important;
+    }
+
+    .iframe-tabs{
+        left:1.15em;
+    }
+
+    .iframescreen a{
+        width: 80px;
+        height:30px;
+        line-height:14px;
+    }
+}

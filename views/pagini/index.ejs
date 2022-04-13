@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Phone Buddy - Home</title>
+    <meta name="keywords"
+        content="phone buddy, smartphone accesories, phone case, screen protector, earbuds, phone holder, earphones, selfie stick, earbuds, screen protector, wireless charger, charging cable">
+    <meta name="description"
+        content="Get the best quality accesories you cand find for your smartphone right here, with just a simple click!">
+    <%- include("../fragmente/head.ejs"); %>
+        <link href="/Sources/css/tabel_home.css" rel="stylesheet" type="text/css">
+        <link href="/Sources/css/galerie_statica.css" rel="stylesheet" type="text/css">
+
+        <style>
+            /* table{
+            background-image: url("/Sources/pictures/table_background.png");
+            table-layout: auto;
+            border: 5px solid green;
+            border-top-color: lime;
+            border-left-color:lime;
+            border-spacing:0px;
+        }
+        table td{
+            cursor:crosshair;
+        }
+
+        table td:hover{
+            background-color:cyan;
+        }
+
+        table tr:nth-child(1) td{
+            border: 2px solid blue;
+        }
+
+        table tr:nth-child(2) td{
+            border: 2px solid red;
+        }
+
+        table tr:nth-child(3) td{
+            border: 2px solid green;
+        } */
+        </style>
+</head>
+
+<body>
+    <div id="banner">Acesta este un proiect scolar</div>
+    <%- include("../fragmente/header.ejs"); %>
+        <p id="watermark">Radu<br>George-Marian</p>
+        <main>
+            <div id="container">
+                <div id="statistics">
+                    <p>USER DATA AND STATISTICS PLACEHOLDER</p>
+                    <p>
+                        <%- locals.ip %>
+                    </p>
+                </div>
+                <div id="online-users">
+                    <p>ONLINE USERS PLACEHOLDER</p>
+                </div>
+                <div id="server">
+                    <p>SITE AND SERVER INFO PLACEHOLDER</p>
+                </div>
+                <div id="events">
+                    <p>EVENTS PLACEHOLDER</p>
+                </div>
+                <div id="table">
+                    <%- locals.nrimag %>
+                    <table id="tabel_main">
+                        <thead>
+                            <tr>
+                                <th>Sunday</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>-</td>
+                                <td colspan="5">09.00 - 13.00</td>
+                                <td>10.00 - 13.30</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td colspan="5">Lunch Break</td>
+                                <td>Lunch Break</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td colspan="5">14.00 - 20.00</td>
+                                <td>14.30 - 17.00</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">But you can contact us via Phone, E-mail or WhatsApp and we'll try to
+                                    fix the issue remotely.</td>
+                            </tr>
+                        </tfoot>
+
+                        <caption>
+                            Technical Support Availability Schedule
+                        </caption>
+                    </table>
+                </div>
+                <div id="welcome">
+                    <section>
+                        <h2>Welcome to <span class="c1_here">Phone</span> <span class="c2_here">Buddy</span> online
+                            store</h2>
+                        <section>
+                            <h3>Thank you for visiting our website &#128516;</h3>
+                            <p><b>Phone Buddy</b> is an online store that makes it easy to find accesories that are best
+                                for
+                                your smartphone as well as for your wallet.</p>
+                            <p>Go to the <a href="/products"><em>Products</em></a> page to find the best matches in
+                                terms of
+                                <b>smartphone accesories</b> for you or scroll down to the <a href="#deals"><em>Deals
+                                        section</em></a> to see some hot deals that you can't afford to miss!
+                            </p>
+                        </section>
+                        <section>
+                            <h3>Phone accesories for everybody</h3>
+                            <p>
+                                Here you find any kind of <b>smartphone accesories</b> that you could think of. <b>Phone
+                                    cases</b>, <b>screen protectors</b>, <b>earbuds</b>, <b>phone holders</b>... you
+                                name
+                                it!</p>
+                            <p>At <b>Phone Buddy</b>, our main goal is to ensure that every single customer gets what he
+                                is
+                                looking for, that is best for its smartphone.
+                            </p>
+                        </section>
+                    </section>
+                </div>
+                <div id="announcements">
+                    <section>
+                        <h2>Announcements</h2>
+                        <p><time datetime="2022-02-20">20<sup>th</sup> February 2022</time> → <strong>The website will
+                                be
+                                down</strong>
+                            for a couple of days in order to improve the quality of the user
+                            interface!!!</p>
+                        <p><time datetime="2022-02-17">17<sup>th</sup> February 2022</time> → We added a <strong>FAQs
+                                section</strong> in
+                            the home page!</p>
+                        <p><time datetime="2022-01-01">1<sup>st</sup> January 2022</time> → <strong>Happy new year,
+                                everyone!</strong>
+                            &#129321;</p>
+                    </section>
+                </div>
+                <div id="content">
+                    <section id="deals">
+                        <h2>Deals</h2>
+                        <p>Available only <em>this week</em>:</p>
+                        <ul>
+                            <li>
+                                <figure>
+                                    <figcaption>&ldquo;All you need&rdquo; pack for <s>$40</s> <ins>$25</ins>
+                                    </figcaption>
+                                    <picture>
+                                        <source srcset="/Sources/pictures/all_you_need_mini.jpg"
+                                            media="(max-width:700px)">
+                                        <source srcset="/Sources/pictures/all_you_need_medium.jpg"
+                                            media="(max-width:1200px)">
+                                        <img src="/Sources/pictures/all_you_need_maxi.jpg"
+                                            alt="&ldquo;All you need&rdquo; pack">
+                                    </picture>
+                                </figure>
+                                <p>This pack includes: a flip <b>phone case</b> for your phone, a <b>selfie stick</b>, a
+                                    pair of
+                                    <b>earphones</b>. <small>(You can choose the model of the items in the pack as long
+                                        as
+                                        they
+                                        are in stock)</small><br>
+                                    <em>Bonus</em>: you get another pair of <b>earphones</b> for free!<small>(free
+                                        shipping
+                                        for
+                                        this offer)</small><br>
+                                </p>
+                            </li>
+                            <li>
+                                <figure>
+                                    <figcaption>All-in-one <b>wireless charger</b> for <s>$25</s> <ins>$15</ins>
+                                    </figcaption>
+                                    <picture>
+                                        <source srcset="/Sources/pictures/aio_wireless_charger_mini.jpg"
+                                            media="(max-width:700px)">
+                                        <source srcset="/Sources/pictures/aio_wireless_charger_medium.jpg"
+                                            media="(max-width:1200px)">
+                                        <img src="/Sources/pictures/aio_wireless_charger_maxi.jpg"
+                                            alt="All-in-one wireless charger">
+                                    </picture>
+                                </figure>
+                                <p><em>Bonus</em>: you get three beautiful stickers as a gift! <small>(free shipping for
+                                        this
+                                        offer)</small></p>
+                            </li>
+                            <li>
+                                <figure>
+                                    <figcaption><b>Earphones</b> for <s>$15</s> <ins>$7</ins></figcaption>
+                                    <picture>
+                                        <source srcset="/Sources/pictures/earphones_mini.jpg" media="(max-width:700px)">
+                                        <source srcset="/Sources/pictures/earphones_medium.jpg"
+                                            media="(max-width:1200px)">
+                                        <img src="/Sources/pictures/earphones_maxi.jpg" alt="Earphones">
+                                    </picture>
+                                </figure>
+                                <p><em>Bonus</em>: you get a free solid case for your new <b>earphones</b>! <small>(free
+                                        shipping for this offer)</small></p>
+                            </li>
+                        </ul>
+
+                        <section id="mw">
+                            <h3>Most wanted</h3>
+                            <ul>
+                                <li>
+                                    <figure>
+                                        <figcaption>iPhone <b>charging cable</b></figcaption>
+                                        <picture>
+                                            <source srcset="/Sources/pictures/lightning_mini.jpg"
+                                                media="(max-width:700px)">
+                                            <source srcset="/Sources/pictures/lightning_medium.jpg"
+                                                media="(max-width:1200px)">
+                                            <img src="/Sources/pictures/lightning_maxi.jpg" alt="iPhone charging cable">
+                                        </picture>
+                                        <p><a href="/Sources/pictures/lightning_download.jpg"
+                                                download="lightning_cable.jpg">Download image</a></p>
+                                    </figure>
+                                </li>
+                                <li>
+                                    <figure>
+                                        <figcaption>Colorful lion <b>phone case</b></figcaption>
+                                        <picture>
+                                            <source srcset="/Sources/pictures/lion_case_mini.jpg"
+                                                media="(max-width:700px)">
+                                            <source srcset="/Sources/pictures/lion_case_medium.jpg"
+                                                media="(max-width:1200px)">
+                                            <img src="/Sources/pictures/lion_case_maxi.jpg"
+                                                alt="Colorful lion phone case">
+                                        </picture>
+                                        <p><a href="/Sources/pictures/lion_case_download.jpg"
+                                                download="lion_case.jpg">Download
+                                                image</a></p>
+                                    </figure>
+                                </li>
+                                <li>
+                                    <figure>
+                                        <figcaption>Xiaomi Mi <b>earbuds</b></figcaption>
+                                        <picture>
+                                            <source srcset="/Sources/pictures/mi_earbuds_mini.jpg"
+                                                media="(max-width:700px)">
+                                            <source srcset="/Sources/pictures/mi_earbuds_medium.jpg"
+                                                media="(max-width:1200px)">
+                                            <img src="/Sources/pictures/mi_earbuds_maxi.jpg" alt="Xiaomi Mi earbuds">
+                                        </picture>
+                                        <p><a href="/Sources/pictures/mi_earbuds_download.jpg"
+                                                download="mi_earbuds.jpg">Download image</a></p>
+                                    </figure>
+                                </li>
+                                <li>
+                                    <figure>
+                                        <figcaption>Glass <b>screen protector</b></figcaption>
+                                        <picture>
+                                            <source srcset="/Sources/pictures/glass_screen_protector_mini.jpg"
+                                                media="(max-width:700px)">
+                                            <source srcset="/Sources/pictures/glass_screen_protector_medium.jpg"
+                                                media="(max-width:1200px)">
+                                            <img src="/Sources/pictures/glass_screen_protector_maxi.jpg"
+                                                alt="Glass screen protector">
+                                        </picture>
+                                        <p><a href="/Sources/pictures/glass_screen_protector_download.jpg"
+                                                download="glass_screen_protector.jpg">Download image</a></p>
+                                    </figure>
+                                </li>
+                            </ul>
+                            <br><br><br>
+
+                            <!-- <% for(let prod of locals.produse){ %>
+                                <p>
+                                    <%- prod.nume %>
+                                        <%- prod.pret %>
+                                </p>
+
+                                <% } %> -->
+                                </section>
+                    </section>
+
+
+
+                    <div id="video">
+                        <video preload="metadata" width="50%" height="auto" controls
+                            poster="/Sources/pictures/poster.jpg">
+                            <source src="/Sources/videos/video.mp4" type="video/mp4">
+                            <source src="/Sources/videos/video.ogv" type="video/ogv">
+
+                            <track src="/Sources/videos/tracks/video_captions.vtt" kind="captions" srclang="en"
+                                label="engleza">
+                            <track default src="/Sources/videos/tracks/video_captions_ro.vtt" kind="captions"
+                                srclang="ro" label="romana">
+                        </video>
+                    </div>
+                    <section id="gallery">
+                        <h3>Gallery</h3>
+                        <div id="galerie-statica">
+                            <!-- <%  let nr_imag=0; 
+                                v_luni=["ianuarie", "februarie" , "martie" , "aprilie" , "mai"
+                                , "iunie" , "iulie" , "august" , "septembrie" , "octombrie" , "noiembrie"
+                                , "decembrie"]
+                                for(let imag of locals.imagini){ 
+                                    if(nr_imag==12){
+                                        break;
+                                    }
+                                    d=new Date();
+                                    if (imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
+                                    nr_imag ++; %>
+
+                                    <figure>
+                                        <picture title="<%- imag.titlu %>">
+                                            <source srcset="<%- imag.mic %>" media="(maxwidth:800px)">
+                                            <source srcset="<%- imag.mediu %>" media="(maxwidth:1200px)">
+                                            <img src="<%- imag.mare %>" alt="<%- imag.alt %>">
+                                        </picture>
+                                        <figcaption>
+                                            <%- imag.text_descriere %>
+                                        </figcaption>
+                                    </figure>
+
+                                      <% }} %> -->
+
+                                    <%  let temp_img = [];
+                                        v_luni=["ianuarie", "februarie" , "martie" , "aprilie" , "mai"
+                                        , "iunie" , "iulie" , "august" , "septembrie" , "octombrie" , "noiembrie"
+                                        , "decembrie"]
+                                        
+                                        for(let imag of locals.imagini){ 
+                                            if(temp_img.length == 12){
+                                                break;
+                                            }
+                                            d=new Date();
+                                            if (imag.luni && imag.luni.includes(v_luni[d.getMonth()]))
+                                                temp_img.push(imag)
+                                           }   
+                                        
+                                           for(let i = 0; i < Math.floor(temp_img.length / 3) * 3; i++){
+                                           
+                                           
+                                            
+                                           %>
+                                <figure>
+                                    <picture title="<%- temp_img[i].titlu + ' (Credits: ' +  temp_img[i].credits + ')' %>">
+                                        <source srcset="<%- temp_img[i].mic %>" media="(maxwidth:800px)">
+                                        <source srcset="<%- temp_img[i].mediu %>" media="(maxwidth:1200px)">
+                                        <img src="<%- temp_img[i].mare %>" alt="<%- temp_img[i].alt %>">
+                                    </picture>
+                                    <figcaption>
+                                        <%- temp_img[i].text_descriere %>
+                                    </figcaption>
+                                </figure>
+                                <% } %>
+                              
+                        </div>
+                        <div id="gallery-btn"><a href ="/gallery">Full Gallery</a></div>
+                    </section>
+                    <section id="tutorials">
+                        <h3>Useful Tutorials</h3>
+                        <div class="iframescreen">
+                            <div class="iframe-tabs">
+                                <a href="https://www.youtube.com/embed/8ixSuBoPaoY" target="ifr-video"><b>Screen
+                                        protector</b></a>
+                                <a href="https://www.youtube.com/embed/DMr-EP8AmYs" target="ifr-video"><b>Phone case</b>
+                                    install</a>
+                                <a href="https://www.youtube.com/embed/WvAhT9nXI28" target="ifr-video">Pop-socket
+                                    install</a>
+                                <a href="https://www.youtube.com/embed/Izz7R2HiKK8" target="ifr-video"><b>Car mount</b>
+                                    install</a>
+                            </div>
+                            <iframe name="ifr-video" width="560" height="315"
+                                src="https://www.youtube.com/embed/8ixSuBoPaoY"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </section>
+                    <section id="faq">
+                        <h2>Frequently Aked Questions</h2>
+                        <details>
+                            <summary>What is the shipping time?</summary>
+                            <p>The shipping time depends on the availability of the product in your local deposit. If
+                                the
+                                product
+                                is in stock, it should arrive in 2-3 workdays, otherwise a special request for your
+                                product
+                                will
+                                be
+                                placed and it should arrive from the main deposit in about 5-6 workdays.</p>
+                        </details>
+                        <details>
+                            <summary>Will COVID-19 pandemic affect my order?</summary>
+                            <p>Usually, there should be no delay to the shipping caused by the pandemic that we are
+                                facing.
+                                Stay
+                                pacient and healthy!</p>
+                        </details>
+                        <details>
+                            <summary>Can I return the product for a refund if I don't like it?</summary>
+                            <p>Of course! Our company ensures a 14-days trial period for your products and during that
+                                time
+                                you
+                                can
+                                request a refund.</p>
+                        </details>
+                        <details>
+                            <summary>If I am not satisfied with a product that I have purchased, how can I get a refund?
+                            </summary>
+                            <p>If a product is defectuous or if you don't like it you can send an email (go to the Send
+                                an
+                                email
+                                section in the Contact Us page) in which you specify that you want a refund and you will
+                                be
+                                shortly
+                                contacted by one of our staff members that will help you with your refund request.</p>
+                        </details>
+                        <details>
+                            <summary>Can I apply more than one promo code on the same order?</summary>
+                            <p>Unfortunately, it's possible to apply only one promo code on each order that you place.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Can I apply more than one promo code on the same order?</summary>
+                            <p>Unfortunately, it's possible to apply only one promo code on each order that you place.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Does Phone Buddy offer extended warranty for its products?</summary>
+                            <p>Yes, you have the option to extend your warranty up to 1 year for any product that you
+                                order.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Can I choose a custom design for my case?</summary>
+                            <p>At the moment you can't customize your phone case, but we are working on getting as many
+                                phone
+                                case
+                                designs as possible in order to match all of our customers' tastes.</p>
+                        </details>
+                    </section>
+                    <section id="partners">
+                        <h2>Partners</h2>
+                        <p>A big thank you to our beloved partners:</p>
+                        <ul>
+                            <li><a href="https://catmobile.ro/" target="_blank">CatMobile</a></li>
+                            <li><a href="https://www.quickmobile.ro/" target="_blank">Quickmobile</a></li>
+                            <li><a href="https://www.gsmnet.ro/" target="_blank">Gsmnet</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <%- include("../fragmente/footer.ejs"); %>
+
+</body>
+
+</html>

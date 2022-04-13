@@ -1,0 +1,207 @@
+@charset "UTF-8";
+body {
+  --inaltime-meniu:3rem;
+}
+@media screen{
+  nav {
+    font-size: 0.85em;
+    height: 4em;
+    width: 100%;
+    top: 0;
+    padding: 0;
+    z-index: 10;
+  }
+  nav ul.meniu {
+    width: 100% !important;
+    height: var(--inaltime-meniu);
+    background: rgba(255, 255, 255, 0.247);
+    left: 20px;
+  }
+  nav ul.meniu a, nav ul.meniu div {
+    transition: box-shadow 300ms, background-color 300ms linear;
+  }
+  nav ul.meniu ul {
+    display: none;
+    position: absolute;
+    width: 100%;
+  }
+  nav ul.meniu ul > li {
+    color: var(--text-color);
+    background-color: var(--main-color);
+  }
+  nav ul.meniu > li {
+    float: left;
+    width: 150px;
+    position: relative;
+    border-width: 0 !important;
+  }
+  nav ul.meniu > li > a:hover, nav ul.meniu > li > div:hover {
+    box-shadow: 0 0 10px 7px var(--another-color) inset;
+    background-color: #80c3dd6b;
+  }
+  nav ul.meniu > li:hover > ul {
+    display: block;
+    animation-name: aparitie_meniu;
+    animation-iteration-count: 1;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    transform-origin: 50% 0;
+  }
+  nav ul.meniu > li li a:before {
+    display: inline-block;
+    content: "→";
+    color: var(--text-color);
+    transform: translateX(-100px);
+    transition: transform 300ms linear;
+  }
+  nav ul.meniu > li li a:hover:before {
+    transform: translateX(0px);
+  }
+  nav ul.meniu li {
+    text-align: center;
+    list-style-type: none;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+  nav ul.meniu li a, nav ul.meniu li div {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    height: var(--inaltime-meniu);
+    line-height: var(--inaltime-meniu);
+    overflow: hidden;
+    text-align: center;
+  }
+  nav ul, nav li {
+    padding: 0;
+    margin: 0;
+  }
+  
+  #hamburger {
+    display: none;
+    height: var(--inaltime-meniu);
+  }
+  
+  #ch-menu {
+    display: none;
+  }
+  
+  #hamburger img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+/* nav {
+  font-size: 0.85em;
+  height: 4em;
+  width: 100%;
+  top: 0;
+  padding: 0;
+  z-index: 10;
+}
+nav ul.meniu {
+  width: 100% !important;
+  height: var(--inaltime-meniu);
+  background: rgba(255, 255, 255, 0.247);
+  left: 20px;
+}
+nav ul.meniu a, nav ul.meniu div {
+  transition: box-shadow 300ms, background-color 300ms linear;
+}
+nav ul.meniu ul {
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+nav ul.meniu ul > li {
+  color: var(--text-color);
+  background-color: var(--main-color);
+}
+nav ul.meniu > li {
+  float: left;
+  width: 150px;
+  position: relative;
+  border-width: 0 !important;
+}
+nav ul.meniu > li > a:hover, nav ul.meniu > li > div:hover {
+  box-shadow: 0 0 10px 7px var(--another-color) inset;
+  background-color: #80c3dd6b;
+}
+nav ul.meniu > li:hover > ul {
+  display: block;
+  animation-name: aparitie_meniu;
+  animation-iteration-count: 1;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  transform-origin: 50% 0;
+}
+nav ul.meniu > li li a:before {
+  display: inline-block;
+  content: "→";
+  color: var(--text-color);
+  transform: translateX(-100px);
+  transition: transform 300ms linear;
+}
+nav ul.meniu > li li a:hover:before {
+  transform: translateX(0px);
+}
+nav ul.meniu li {
+  text-align: center;
+  list-style-type: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+nav ul.meniu li a, nav ul.meniu li div {
+  color: var(--text-color);
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  height: var(--inaltime-meniu);
+  line-height: var(--inaltime-meniu);
+  overflow: hidden;
+  text-align: center;
+}
+nav ul, nav li {
+  padding: 0;
+  margin: 0;
+}
+
+#hamburger {
+  display: none;
+  height: var(--inaltime-meniu);
+}
+
+#ch-menu {
+  display: none;
+}
+
+#hamburger img {
+  height: 100%;
+  width: auto;
+} */
+
+
+@media screen and (max-width: 1200px) {
+  nav ul.meniu li a, nav ul.meniu li div {
+    font-size: 0.8em;
+  }
+  nav > ul > li > div > span {
+    display: none !important;
+  }
+}
+@keyframes aparitie_meniu {
+  0% {
+    opacity: 0;
+    transform: scale(1, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+/*# sourceMappingURL=nav.css.map */

@@ -1,0 +1,107 @@
+body
+    --menu-color: rgba(255, 255, 255, 0.247)
+    --second-menu-color: rgba(255, 255, 255, 0.270)
+
+#hamburger
+    display: block
+
+nav
+    background-color: var(--menu-color)
+    width: 100%
+
+    img
+        border-color: transparent
+
+    ul.meniu
+        display: none
+        position: absolute
+        width: 120%
+        left: 0px
+
+        li
+            width: 100%
+
+        > li
+            > ul
+                > li
+                    div, a
+                        &:hover
+                            box-shadow: 0 0 10px 7px var(--another-color) inset
+
+                        transition: box-shadow 300ms linear
+            &:hover
+                > ul
+                    z-index: 200
+                    transform: scale(0,0)
+
+            ul
+                position: absolute
+                width: 100%
+                z-index: 200
+                transform: scale(1,1)
+                transition: transform 300ms linear
+
+            li
+                a
+                    &:before
+                        display: none
+    
+header
+    margin-left: 0
+    margin-right: 0
+    margin-bottom: 13em
+
+
+#ch-menu
+    &:checked
+        + ul.meniu
+            display: block
+            z-index: 2
+            position: relative
+            left: 0em
+            top: 0.5em
+            transform-origin: 0 0
+            animation-name: aparitie_meniu_p
+            animation-iteration-count: 1
+            animation-duration: 0.7s
+            animation-fill-mode: forwards
+            animation-timing-function: linear
+            width: 100%
+            margin-bottom: 100px
+
+            > li
+                > div, > a
+                    background-color: var(--menu-color)
+                    z-index: 2
+                    position: relative
+                    transform-origin: 50% 50%
+                    animation-name: aparitie_meniu_p_btn
+                    animation-iteration-count: 1
+                    animation-duration: 0.7s
+                    animation-fill-mode: forwards
+                    animation-timing-function: linear
+
+                ul
+                    > *
+                        position: relative
+                        z-index: 200
+
+@for $i from 2 through 4
+    nav
+        ul.meniu
+            > li:nth-child(#{$i})   
+                background-color: var(--second-menu-color)
+
+@keyframes aparitie_meniu_p
+    0%
+        transform: scale(0,0)
+    
+    100%
+        transform: scale(1,1)
+
+@keyframes aparitie_meniu_p_btn
+    0%
+        transform: scale(0,0)
+
+    100%
+        transform: scale(1,1)

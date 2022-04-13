@@ -1,0 +1,7 @@
+$nr_imag: 18;
+
+@for $i from 0 through 17{
+    #galerie-animata figure:nth-of-type(#{$nr_imag - $i}){
+        animation-delay: $i * 3s;
+    }
+}

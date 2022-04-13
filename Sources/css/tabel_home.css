@@ -1,0 +1,73 @@
+#tabel_main{
+    caption-side: bottom;
+    border-spacing:0px;
+    border: 5px solid var(--another-color);
+    border-style:inset;
+    background-color:var(--background-color);
+}
+
+#tabel_main td{
+    text-align:center;
+    border: 0.5px solid darkblue;
+}
+
+#tabel_main th{
+    text-align: center;
+    border-left:0.5px solid darkblue;
+    border-right:0.5px solid darkblue;
+    border-bottom:0.5px solid var(--highlight-color);
+}
+
+#tabel_main th:nth-child(1){
+    border-left:none;
+}
+
+#tabel_main th:nth-child(7){
+    border-right:none;
+}
+
+#tabel_main tr td:nth-child(1){
+    border-left:none;
+}
+
+#tabel_main tbody tr td:nth-child(3){
+    border-right:none;
+}
+
+#tabel_main tfoot td{
+    border-right:none;
+    border-bottom:none;
+}
+
+#tabel_main tr{
+    outline: transparent;
+    transition: outline 0.5s ease-in-out;
+}
+
+#tabel_main thead tr td{
+    border-bottom: 0.5px solid var(--highlight-color);
+}
+
+#tabel_main tfoot tr td{
+    border-top:0.5px solid var(--border-color);
+}
+
+#tabel_main tbody tr:nth-child(even) td{
+   border-top: 0.5px solid var(--border-color);
+   border-bottom: 0.5px solid var(--highlight-color);
+}
+
+#tabel_main tbody tr:nth-child(odd) td{
+    border-top: 0.5px solid var(--highlight-color);
+    border-bottom: 0.5px solid var(--border-color);
+}
+
+#tabel_main tr:hover{
+    outline: 5px solid rgba(44, 44, 202, 0.7);
+}
+
+@media screen and (max-width:1320px){
+    #table{
+        overflow-x:scroll;
+    }
+}

@@ -1,0 +1,19 @@
+WEBVTT - Title
+
+STYLE
+::cue{
+    background-color:white;
+    color: #0368ff;
+}
+
+00:00.000 --> 00:03.000 line:0 position:50%
+What's new on Phone Buddy?
+
+00:03.000 --> 00:09.000 line:0 position:50%
+WOW, they added a new <i>phone case</i> design!
+
+00:05.000 --> 00:09.000 line:0 position:50%
+I hope they have one for my phone too...
+
+00:10.000 --> 00:14.000 line:0 position:50%
+Found it, I'm ordering right away :)

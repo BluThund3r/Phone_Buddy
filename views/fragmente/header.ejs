@@ -1,0 +1,57 @@
+<script>
+     var tema = localStorage.getItem("tema");
+    if(tema)
+        document.body.classList.add("dark");
+    else
+        document.body.classList.remove("dark");
+</script>
+<header>
+    <div id="logo"><i class="fa-solid fa-mobile-screen-button fa-2x"></i>
+        <h1>Phone Buddy</h1 >
+    </div>
+    <div id="title"><h1>Phone Buddy</h1></div>
+    <nav>
+        <label id="hamburger" for="ch-menu">
+            <img src="/Sources/pictures/hamburger_menu.png" alt="menu">
+        </label>
+        <input id="ch-menu" type="checkbox">
+        <ul class="meniu">
+            <li>
+                <div><a href="/index"><i class="fa-solid fa-house"></i> <span>Home</span></a></div>
+                <ul>
+                    <li><a href="/index#welcome">Welcome</a></li>
+                    <li><a href="/index#announcements">Announcements</a></li>
+                    <li><a href="/index#deals">Deals</a></li>
+                    <li><a href="/index#gallery">Gallery</a></li>
+                    <li><a href="/index#tutorials">Tutorials</a></li>
+                    <li><a href="/index#faq">FAQs</a></li>
+                    <li><a href="/index#partners">Partners</a></li>
+                </ul>
+            </li>
+            <li>
+                <div><a href="/products">Products</a></div>
+                <ul>
+                    <li><a href="/products">All</a></li>
+                    <% 
+                        for(let elem of locals.categorii){
+                        
+                    %>
+                    <li><a href = "/products?type=<%- elem.unnest %>"></a></li>
+
+                    <% } %>
+                </ul>
+            </li>
+            <li>
+                <div><a href="/about">About</a></div>
+                <ul>
+                    <li><a href="/about#introduce">Description</a></li>
+                    <li><a href="/about#history">Our History</a></li>
+                </ul>
+            </li>
+            <li>
+                <div><a href = "/inregistrare">Log in / Sign Up</a></div>
+            </li>
+        </ul>
+    </nav>
+    <p><button id="btn_tema">Change Theme</button></p>
+</header>

@@ -1,0 +1,83 @@
+#container{
+    display: grid;
+    grid-template-areas: "z-welcome z-welcome z-welcome z-welcome"
+                        "z-events z-table z-table z-announcements"
+                        "z-content z-content z-content z-content"
+                        "z-server z-server z-online-users z-statistics";
+                        
+    grid-template-columns: 1fr  1fr  1fr  1fr;
+    grid-gap: 10px 20px;
+    width:100%;
+}
+
+#welcome{
+    grid-area: z-welcome;
+    text-align:center;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+}
+
+#content{
+    grid-area: z-content;
+    border: 2px solid var(--border-color);
+    border-radius: 10px
+}
+
+#announcements{
+    grid-area: z-announcements;
+   border: 2px solid var(--border-color);
+   border-radius: 10px
+}
+
+#statistics{
+    grid-area: z-statistics;
+   border: 2px solid var(--border-color);
+   border-radius: 10px
+}
+
+#online-users{
+    grid-area: z-online-users;
+   border: 2px solid var(--border-color);
+   border-radius: 10px
+}
+
+#server{
+   border: 2px solid var(--border-color);
+    grid-area: z-server;
+    border-radius: 10px
+}
+
+#events{
+    grid-area: z-events;
+   border: 2px solid var(--border-color);
+   border-radius: 10px
+}
+
+#table{
+   border: 2px solid var(--border-color);
+    grid-area: z-table;
+    border-radius: 10px
+}
+
+@media screen and (max-width:800px){
+    #container{
+        grid-template-columns: 1fr;
+        grid-template-areas:"z-welcome"
+                            "z-events"
+                            "z-table"
+                            "z-announcements"
+                            "z-content"
+                            "z-server"
+                            "z-online-users"
+                            "z-statistics";
+        grid-gap:0px 0px;
+        border-top:2px solid var(--border-color);
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    #container div{
+        border-radius:0px;
+        border-top:none;
+        border-bottom:none;
+    }
+}

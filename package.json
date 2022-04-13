@@ -1,0 +1,50 @@
+{
+  "engines": {
+    "node": "16.x"
+  },
+  "name": "phone_buddy",
+  "version": "1.0.0",
+  "description": "Phone accesories website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node indes.js"
+  },
+  "keywords": [
+    "phone buddy",
+    "smartphone accesories",
+    "phone case",
+    "screen protector",
+    "earbuds",
+    "phone holder",
+    "earphones",
+    "selfie stick",
+    "earbuds",
+    "screen protector",
+    "wireless charger",
+    "charging cable",
+    "fitness tracker",
+    "micro sd",
+    "selfie stick",
+    "phone charger",
+    "headphones",
+    "earphones",
+    "phone case",
+    "pop-socket",
+    "screen protector",
+    "car phone mount",
+    "waterproof phone pouch",
+    "phone armband"
+  ],
+  "author": "Radu George-Marian",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "formidable": "^2.0.1",
+    "pg": "^8.7.3",
+    "sass": "^1.49.9",
+    "sharp": "^0.30.3"
+  }
+}

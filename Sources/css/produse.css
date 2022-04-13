@@ -1,0 +1,102 @@
+main{
+    --padd-main:1rem;
+    padding-left:var(--padd-main);
+    padding-right:var(--padd-main);
+}
+
+.grid-produse{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:1rem;
+}
+.grid-produse .produs{
+    border: 3px solid var(--border-color);
+    border-radius: 2rem;
+    background-color: rgba(243, 239, 239, 0.384);
+    overflow: hidden;
+}
+
+.grid-produse .produs h3{
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.grid-produse .produs h4{
+    text-align: center;
+}
+
+.grid-produse .produs h3 a{
+    color:var(--border-color);
+}
+.grid-produse .produs h3 a:hover{
+    color:var(--another-color);
+}
+.grid-produse .produs figure{
+    text-align: center;
+    margin:0;
+}
+.grid-produse .produs figure img{
+    border:1px solid grey;
+    width:80% !important;
+    height:auto;
+}
+.grid-produse .produs .info-prod{
+    display:grid;
+    align-content: center;
+    grid-template-columns:5fr 1fr;
+}
+.grid-produse .produs .info-prod p{
+    width:30%;
+    text-align:center;
+    font-weight:bold;
+}
+
+.grid-produse .produs p.categorie{
+
+    text-align:center;
+    font-weight:bold;
+}
+
+#imag-produs{
+    display:inline-block;
+}
+
+#detalii-produs{
+    display:inline-block;
+}
+
+.produs{
+    position: relative;
+}
+
+#select-wrapper{
+    display:flex;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.selecteaza-cos{
+    display: block;
+    background-color: var(--border-color);
+    position:absolute;
+    bottom:0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    padding:0.3rem;
+    border:1px solid transparent;
+    transition: background-color 150ms linear;
+}
+
+.selecteaza-cos:hover{
+    background-color: var(--another-color);
+    cursor: pointer;
+}
+
+@media screen and (max-width:750px){
+    .grid-produse{
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,142 @@
+body{
+    --inaltime-meniu:3rem;
+}
+
+/* .container-menu{
+    margin-left
+} */
+
+
+nav ul.meniu ul{
+    /*implicit submeniul e ascuns*/
+    display: none;
+	position:absolute;/* ca sa il scot din container pe alt layer, sa nu imi deplaseze continutul cand devine vizibil*/
+	width:100%;
+}
+
+nav ul.meniu{
+    width:100% !important;
+    height:var(--inaltime-meniu);
+    background: rgba(255, 255, 255, 0.247);
+    left:20px;
+}
+
+nav{
+    font-size:0.85em;
+    height: 4em;
+    width:100%;
+    top:0;
+    padding:0;
+    
+    z-index:10;
+    /*ca sa fie pozitionat normal in partea de sus a containerului, sub sigla, 
+    dar apoi cand dam scroll sa ramana fix pe ecran*/
+}
+nav ul.meniu>li{
+    float:left;
+    width:150px;
+	position:relative;/* pentru ca submeniul pozitionat relativ sa aiba ca referinta parintele li*/
+    border-width:0 !important;
+}
+
+nav ul, nav li{
+    padding:0;
+    margin:0;
+}
+
+
+nav ul.meniu li{
+    /*text centrat pe orizontala*/
+    text-align:center;
+
+    /*ascundem bullets*/
+    list-style-type: none;
+    color: var(--text-color);
+    cursor:pointer;
+}
+
+nav ul.meniu ul>li{
+    color: var(--text-color);
+    background-color:var(--main-color);
+
+}
+nav ul.meniu li a, nav ul.meniu li div{
+    color:var(--text-color);
+    text-decoration: none;
+    display: block;
+    font-weight:bold;
+    /*inaltimea butonului si inaltimea liniei de text sunt identice 
+    pentru a centra textul pe verticala in element
+     - merge doar daca textul are o singura linie*/
+    height:var(--inaltime-meniu);
+    line-height:var(--inaltime-meniu); 
+    overflow:hidden;
+    text-align:center;
+}
+
+nav ul.meniu>li li a:before{
+    display:inline-block;
+    content:"\2192";
+    color:var(--text-color);
+    transform:translateX(-100px);
+    transition:transform 300ms linear;
+}
+
+nav ul.meniu>li li a:hover:before{
+    transform:translateX(0px);
+} 
+
+nav ul.meniu>li>a:hover, ul.meniu>li>div:hover{
+    box-shadow:0 0 10px 7px var(--another-color) inset;
+    background-color:#80c3dd6b;
+
+}
+
+nav ul.meniu a, ul.meniu div{
+   transition: box-shadow 300ms, background-color 300ms linear; 
+}
+/*deschidere submeniu*/
+nav ul.meniu>li:hover>ul{
+	display:block;
+    animation-name: aparitie_meniu;
+    animation-iteration-count:1;
+    animation-duration:0.4s;
+    animation-fill-mode:forwards;
+    animation-timing-function:linear;
+    transform-origin: 50% 0;
+}
+
+
+#hamburger{
+    display: none;
+    height: var(--inaltime-meniu);
+}
+#ch-menu{
+    display: none ;
+}
+#hamburger img{
+    height:100%;
+    width:auto;
+  }
+
+
+@media screen and (max-width:1200px){
+    nav ul.meniu li a, nav ul.meniu li div{
+        font-size:0.8em;
+    }
+
+    nav>ul>li>div>span{
+        display:none !important;
+    }
+}
+
+  @keyframes aparitie_meniu{
+    0%{
+        opacity: 0;
+        transform:scale(1,0);
+    }
+    100%{
+        opacity: 1;
+        transform:scale(1,1);
+    }
+}
