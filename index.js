@@ -18,29 +18,61 @@ const ejs = require("ejs");
 const formidable= require('formidable');
 const crypto= require('crypto');
 const session= require('express-session');
+const req = require("express/lib/request");
+const nodemailer = require('nodemailer');
 
+
+
+async function trimiteMail(email, subiect, mesajText, mesajHtml, atasamente=[]){
+  var transp= nodemailer.createTransport({
+      service: "gmail",
+      secure: false,
+      auth:{//date login 
+          user:obGlobal.emailServer,
+          pass:"niqxwubxqimbcygl"
+      },
+      tls:{
+          rejectUnauthorized:false
+      }
+  });
+  //genereaza html
+  await transp.sendMail({
+      from:obGlobal.emailServer,
+      to:email,
+      subject:subiect,//"Te-ai inregistrat cu succes",
+      text:mesajText, //"Username-ul tau este "+username
+      html: mesajHtml,// `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${username}.</p> <p><a href='http://${numeDomeniu}/cod/${username}/${token}'>Click aici pentru confirmare</a></p>`,
+      attachments: atasamente
+  })
+  console.log("trimis mail");
+}
 
 client.connect();
 
-
 app = express();
+
+app.use(session({  // se creeaza proprieteatea session a request-ului (putem folosi req.session)
+  secret: 'abcdefg',//folosit de express session pentru criptarea id-ului de sesiune
+  resave: true,
+  saveUninitialized: false
+}));
 
 app.set("view engine", "ejs");
 
 
 app.use("/Sources", express.static(__dirname + "/Sources"));    
 
-optiuniMeniu = [];
+const obGlobal = {
+  emailServer:"utilizator.proiect2022@gmail.com"
+}
 
 client.query("select * from unnest(enum_range(null::categ_accesorii))", function(err, rezCateg){
-  optiuniMeniu = rezCateg.rows;
- 
+    obGlobal.optiuniMeniu = rezCateg.rows;
 });
 
 app.use("/*", function(req, res, next){
-  res.locals.categorii = optiuniMeniu;
-  //console.log(`res.locals.categorii : \ntype = ${typeof res.locals.categorii}`);
-  // res.locals.propGenerala="Ceva care se afiseaza pe toate pag";
+  res.locals.categorii = obGlobal.optiuniMeniu;
+  res.locals.utilizator = req.session.utilizator;
   
   next();
 
@@ -143,15 +175,78 @@ parolaServer = "tehniciweb"
 app.post("/inreg", function(req, res){
     var formular = new formidable.IncomingForm();
     formular.parse(req, function(err, campuriText, campuriFisier){
-        var parolaCriptata = crypto.scryptSync(campuriText.parola, parolaServer, 64).toString('hex');
-        var comandaInserare = `insert into utilizatori (username, nume, prenume, parola, email. culoare_chat) values ('${campuriText.username}', '${campuriText.nume}', '${campuriText.prenume}', '${parolaCriptata}', '${campuriText.email}', '${campuriText.culoare_chat}')`;
-        client.query(comandaInserare, function(err, rezInserare){
-            if(err)
-              console.log(err);
-        })
+        var eroare = "";
+        if(campuriText.username == ""){
+            eroare += "No username entered. "
+        }
+
+        if(!campuriText.username.match(new RegExp("^[A-Za-z0-9]+$"))){
+            eroare += "Username contains forbidden characters. "
+        }
+
+        if(!eroare){
+          queryUtiliz = `select username from utilizatori where username = '${campuriText.username}'`;
+          client.query(queryUtiliz, function(err, rezUtiliz){
+              if(rezUtiliz.rows.length != 0){
+                  eroare += "This Username is already taken. "
+                  res.render("pagini/inregistrare", {err: "Error: " + eroare});
+                  console.log(rezUtiliz.rows[0]);
+              }
+              else{
+                var parolaCriptata = crypto.scryptSync(campuriText.parola, parolaServer, 64).toString('hex');
+                var comandaInserare = `insert into utilizatori (username, nume, prenume, parola, email, culoare_chat) values ('${campuriText.username}', '${campuriText.nume}', '${campuriText.prenume}', '${parolaCriptata}', '${campuriText.email}', '${campuriText.culoare_chat}')`;
+                client.query(comandaInserare, function(err, rezInserare){
+                    if(err){
+                      console.log(err);
+                      res.render("pagini/inregistrare", {err: "Database error!"});
+                    }
+                    else
+                      res.render("pagini/inregistrare", {raspuns: "Details have been saved."});
+                      trimiteMail(campuriText.email, "You signed up!", `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${campuriText.username}.</p>`)
+                });
+                
+              }
+          });
+      }
+
+      else{
+        res.render("pagini/inregistrare", {err: "Error: " + eroare});
+      }   
       });
 })
 
+app.post("/login", function(req, res){
+  var formular = new formidable.IncomingForm();
+  formular.parse(req, function(err, campuriText, campuriFisier){
+      var parolaCriptata = crypto.scryptSync(campuriText.parola, parolaServer, 64).toString('hex');
+      var querySelect = `select * from utilizatori where username='${campuriText.username}' and parola='${parolaCriptata}'`;
+      client.query(querySelect, function(err, rezSelect){
+        if(err)
+          console.log(err);
+        else{
+          if(rezSelect.rows.length == 1){
+              req.session.utilizator = {
+                  nume: rezSelect.rows[0].nume,
+                  prenume: rezSelect.rows[0].prenume,
+                  username: rezSelect.rows[0].username,
+                  email: rezSelect.rows[0].email,
+                  culaore_chat: rezSelect.rows[0].culoare_chat,
+                  rol: rezSelect.rows[0].rol
+              }
+              res.redirect("/index");
+          }
+        }
+    })
+  });
+
+});
+
+
+app.get("/logout", function(err, res){
+    req.session.destroy();
+    res.locals.utilizator = null;
+    res.render("pagini/logout");
+});
 
 app.get("/*.ejs", function(req, res){
   // res.sendFile(__dirname + "/index1.html");

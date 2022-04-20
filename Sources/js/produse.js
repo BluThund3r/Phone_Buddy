@@ -121,7 +121,7 @@ window.addEventListener("load", function(){
 
             let cond4 = (valCuloare == "all") || (culoareArt == valCuloare);
 
-            let descArt = art.getElementsByClassName("val-descriere")[0].innerHTML;
+            let descArt = art.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase();
 
             let cond5 = descArt.includes(valDesc);
 

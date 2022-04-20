@@ -29,15 +29,20 @@
                 </ul>
             </li>
             <li>
-                <div><a href="/products">Products</a></div>
+                <div id="products_nav"><a href="/products">Products</a></div>
                 <ul>
                     <li><a href="/products">All</a></li>
+                    <!-- <% //var tempCategAf = {
+                            //"phone_cases_and_screen_protectors": "Phone Cases",
+                            //"tech_accessories" : "Tech Accessories",
+                            //"phone_holders_and_waterproof_bags" : "Phone Holders"
+                        //};   %> -->
                     <% 
                         for(let elem of locals.categorii){
                         
                     %>
-                    <li><a href = "/products?type=<%- elem.unnest %>">something</a></li>
-
+                    <!-- <li><a href = "/products?type=<%- elem.unnest %>" style="text-transform:capitalize;"><%- //tempCategAf[elem.unnest] %></a></li> -->
+                    <li><a href = "/products?type=<%- elem.unnest %>" style="text-transform:capitalize;"><%- elem.unnest.split("_").join(" ") %></a></li>
                     <% } %>
                 </ul>
             </li>
@@ -51,6 +56,14 @@
             <li>
                 <div><a href = "/inregistrare">Log in / Sign Up</a></div>
             </li>
+            <% if(locals.utilizator){ %>
+                <li><div><%- locals.utilizator.username %></div>
+                    <ul>
+                        <li><a href="/profil">Profile</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </li>
+                <% } %>
         </ul>
     </nav>
     <p><button id="btn_tema">Change Theme</button></p>

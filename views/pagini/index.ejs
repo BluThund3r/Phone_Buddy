@@ -44,9 +44,26 @@
 
 <body>
     <div id="banner">Acesta este un proiect scolar</div>
-    <%- include("../fragmente/header.ejs"); %>
+    <%- include("../fragmente/header"); %>
         <p id="watermark">Radu<br>George-Marian</p>
         <main>
+            <% if(!locals.utilizator){ %>
+            <form id="form_inreg"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
+                <p>
+                    <label>
+                        Username: <input type="text" name="username" id="inp-username" value="prof<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
+                    </label>
+                </p> 
+                <p>
+                    <label>
+                        Parola: <input id="parl" type="password" required  name="parola" value="">
+                    </label>
+                </p>
+                <p>
+                    <input type="submit" value="Log in">
+                </p>
+                </form>
+                <% } %>
             <div id="container">
                 <div id="statistics">
                     <p>USER DATA AND STATISTICS PLACEHOLDER</p>
@@ -460,7 +477,7 @@
                 </div>
             </div>
         </main>
-        <%- include("../fragmente/footer.ejs"); %>
+        <%- include("../fragmente/footer"); %>
 
 </body>
 
