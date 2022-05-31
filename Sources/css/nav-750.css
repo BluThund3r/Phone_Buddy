@@ -10,6 +10,8 @@ body {
 nav {
   background-color: var(--menu-color);
   width: 100%;
+  /* height:auto; */
+  height:var(--inaltime-meniu);
 }
 nav img {
   border-color: transparent;
@@ -19,6 +21,7 @@ nav ul.meniu {
   position: absolute;
   width: 120%;
   left: 0px;
+  background-color: transparent;
 }
 nav ul.meniu li {
   width: 100%;
@@ -63,7 +66,7 @@ header {
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   width: 100%;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 }
 #ch-menu:checked + ul.meniu > li > div, #ch-menu:checked + ul.meniu > li > a {
   background-color: var(--menu-color);
@@ -81,7 +84,7 @@ header {
   z-index: 200;
 }
 
-nav ul.meniu > li:nth-child(2) {
+/* nav ul.meniu > li:nth-child(2) {
   background-color: var(--second-menu-color);
 }
 
@@ -91,7 +94,7 @@ nav ul.meniu > li:nth-child(3) {
 
 nav ul.meniu > li:nth-child(4) {
   background-color: var(--second-menu-color);
-}
+} */
 
 @keyframes aparitie_meniu_p {
   0% {
@@ -110,4 +113,3 @@ nav ul.meniu > li:nth-child(4) {
   }
 }
 
-/*# sourceMappingURL=nav-750.css.map */

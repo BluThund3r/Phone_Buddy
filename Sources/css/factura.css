@@ -1,0 +1,13 @@
+p{
+font-weight:bold;
+}
+
+body {
+	display:grid;
+	place-items:center;
+}
+
+td img {
+	width:80%;
+	height:auto;
+}

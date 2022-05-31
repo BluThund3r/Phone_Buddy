@@ -22,6 +22,13 @@
             "titlu":"Site în lucru",
             "text": "Muncim, muncim!",
             "imagine":"interzis.png"
+        },
+        {
+            "identificator":2,
+            "status":false,
+            "titlu":"Eroare baza date",
+            "text": "Reveniti mai tarziu!",
+            "imagine":"interzis.png"
         }
     ]
 }

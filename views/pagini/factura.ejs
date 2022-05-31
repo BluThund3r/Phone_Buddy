@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Bill</title>
+		<style>
+			body{
+				counter-reset: cnt;
+			}
+
+			#tabl{
+				border-collapse:collapse;
+			}
+
+			#tabl td, #tabl th{
+				border:1px solid black;
+			}
+			
+			span.aici_counter::before {
+				counter-increment: cnt;
+				content: counter(cnt) ". ";
+			}
+
+		</style>
+		<link rel="stylesheet" href="<%- locals.protocol%><%- locals.domeniu %>/Sources/css/factura.css" type="text/css">
+	</head>
+	<body>
+		<% var data = new Date();
+			function zero(arg) {
+				if(arg < 10)
+					return "0" + arg;
+				return arg;
+			}
+		%>
+		<h1>Phone Buddy - Bill</h1>
+		<p>Dear <%- locals.utilizator.prenume %> <%-locals.utilizator.nume %>, these are the products that you ordered today, <%- zero(data.getDate()) %>/<%- zero(data.getMonth()) %>/<%- data.getFullYear() %> at <%- zero(data.getHours()) %>:<%- zero(data.getMinutes()) %>:<%- zero(data.getSeconds()) %></p> 
+		<table id="tabl">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Price Per Unit</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Returnable</th>
+					<th>Discount</th>
+					<th>Image</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+                <% 
+				var suma=0;
+				for (let prod of locals.produse) {
+					suma+= parseFloat(prod.pret) * parseFloat(prod.qtty);
+					 %>
+                    <tr>
+                        <td><span class="aici_counter"><%- prod.nume %></span></td>
+						<td><%- prod.pret %> RON</td>
+						<td><%- prod.qtty %></td>
+                        <td><%- parseFloat(prod.pret) * parseFloat(prod.qtty) %> RON</td>
+						<td><%- (prod.returnable)? "Yes" : "No" %></td>
+						<td><%- prod.discount %> %</td>
+                        <td><img src="<%- locals.protocol%><%- locals.domeniu %>/Sources/pictures/products/<%- prod.imagine %>"></td>
+                    </tr>
+                <% } %>
+			</tbody>
+		</table>
+		<br>
+		<div style="height:auto;width:100%; text-align: center; font-size:2em;"><span style="font-weight:bold">Total Price:</span> <%- suma %></div>
+
+		<p>If you want to check anything on our website, here is a QR Code that gets you straight to the "Products" page.</p>
+		<br><br>
+		<img src="<%- locals.protocol%><%- locals.domeniu %>/Sources/pictures/qrcode/products.png">
+	</body>
+</html>

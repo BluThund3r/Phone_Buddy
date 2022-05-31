@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+	<head>
+		<title>Phone Buddy - Forum</title>
+		<%- include("../fragmente/head") %>
+		<link rel="stylesheet" type="text/css" href="/Sources/css/contact.css" />
+	</head>
+	<body class="container">
+		<header>
+			<%- include("../fragmente/header") %>
+		</header>
+		<main>
+			
+			<h1>Post a message to the forum</h1>
+			<p>Type any message (maybe a question) in the box below and send it to other users and admins.</p>
+
+            <form method="post" action="/contact">
+                <label>Your message:<br/>
+                    <textarea cols="30" rows="5" name="mesaj"></textarea>
+                </label><br/>
+                <input type="submit" value="Send">
+            </form>
+			<section>
+				<h2>Messages:</h2>
+				<% if (locals.mesaje) { %>
+					<div id="wrapper_all">
+				    <% var mesajeSort=locals.mesaje.sort(function(a,b) {return (new Date(b.attributes.data)).getTime()-(new Date(a.attributes.data)).getTime()})
+					for (let msg of mesajeSort) { 
+						let dt=new Date(msg.attributes.data);
+						%>
+						<article class="mesaj-c">
+							<h3><span class="username"><%= msg.attributes.username%></span> says:</h3>
+							<p id = "mesaj" style="color: <%= msg.attributes.color %>;"><%= msg.elements[0].text %></p>
+							<p id="time"><small><time datetime="<%= dt.getUTCDate() %>"><%= dt.toLocaleString('en-EN', {
+														weekday: 'short', 
+														day: 'numeric',
+														year: 'numeric', 
+														month: 'short', 
+														hour: 'numeric',
+														minute: 'numeric', 
+														second: 'numeric',
+													}) %></time></small>
+							</p>
+						</article><br>
+					<% } %>
+					</div>
+				<% } %>
+			</section>
+		</main>
+
+		<%- include("../fragmente/footer") %>
+		
+	</body>
+</html>

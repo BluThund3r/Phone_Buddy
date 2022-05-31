@@ -1,23 +1,46 @@
 <!DOCTYPE html>
-<html  lang="ro">
-    <head>
-        <meta name="description" content="Cofetaria Dulcelind - Logout">
-        <meta name="keywords" content="cofetarie, Dulcelind, logout">
-        <link rel="stylesheet" href="/Sources/css/produse.css" type="text/css" />
-        <title>Cofetăria Dulcelind - înregistrare </title>
-        <%- include("../fragmente/head") %>     
+<html lang="ro">
+
+<head>
+    <meta name="description" content="Phone Buddy - Log Out">
+    <meta name="keywords" content="Phone Buddy, logout">
+    <link rel="stylesheet" href="/Sources/css/produse.css" type="text/css" />
+    <title>Phone Buddy - Log Out </title>
+    <%- include("../fragmente/head") %>
         <script type="text/javascript" src=/Sources/js/produse.js></script>
-    </head>
-    <body>
+    <style>
+        #img_logout{
+            border:none !important;
+            display:inline-block;
+        }
+
+        #container_logout{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 8%;
+            margin-bottom:8%;
+            background-color: rgba(255, 255, 255, 0.221);
+            padding:10%;
+            border-radius:10px;
+        }
+    </style>
+</head>
+
+<body>
     <%- include("../fragmente/header") %>
 
-    <main>
-    Ai fost delogat!
-</main>
+        <main>
+            <div id="container_logout">
+                <h2>You logged out!</h2>
+                <img id="img_logout" src = "/Sources/pictures/log_out.png">
+            </div>
+        </main>
 
-<footer>
-    <%- include('../fragmente/footer') %>
-</footer>
+        <footer>
+            <%- include('../fragmente/footer') %>
+        </footer>
 
 </body>
+
 </html>

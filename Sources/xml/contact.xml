@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contact>
+    <mesaje>
+        <mesaj username="admin" data="Thu May 26 2022 21:33:38 GMT+0300 (Eastern European Summer Time)" color="red">Welcome to Phone Buddy Forum!</mesaj>
+        <mesaj username="Anonymous User" data="Thu May 26 2022 21:42:04 GMT+0300 (Eastern European Summer Time)" color="white">HELLO WORLD!!</mesaj>
+        <mesaj username="admin" data="Thu May 26 2022 21:46:10 GMT+0300 (Eastern European Summer Time)" color="red">Test message... 
+I will be back l8r :)
+CYA</mesaj>
+        <mesaj username="test" data="Sat May 28 2022 10:46:45 GMT+0300 (Eastern European Summer Time)" color="white">"To be or not to be, that's the question" - Some Bright Guy</mesaj>
+    </mesaje>
+</contact>

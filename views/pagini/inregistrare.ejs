@@ -7,23 +7,66 @@
         <title>Phone Buddy - Sign Up</title>
         <%- include("../fragmente/head") %>     
         <script type="text/javascript" src=/Sources/js/inregistrare.js></script>
+        <style>
+            .img_t_d{
+                border:none !important;
+                display:inline-block;
+            }
+            
+            .container_inreg{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                column-gap: 8%;
+                margin-bottom:8%;
+                background-color: rgba(255, 255, 255, 0.221);
+                padding:10%;
+                border-radius:10px;
+                }
+            
+            #wrapper_div_form_inreg {
+                width:100%;
+                display:grid;
+                place-items: center;
+            }
+
+            #div_form_inreg {
+                background-color:rgba(255, 255, 255, 0.221);
+                border: 2px solid var(--border-color);
+                border-radius: 10px;
+                display:grid;
+                place-items: center;
+                padding:3%;
+            }
+        </style>
     </head>
     <body>
     <%- include("../fragmente/header") %>
 
     <main>
     <div class="afisaj">
-        <h1>Inregistrare utilizator</h1>
-        <% if(!locals.raspuns){%>
-		
-			<%-include("../fragmente/formular", {action: "/inreg"}) %>
-
+        <h1>User Sign Up</h1><br>
+        <% if(!locals.raspuns && !locals.err){%>
+            <div id="wrapper_div_form_inreg">
+                <div id="div_form_inreg">
+                    <p style="font-size:1.7em; font-weight:bold;">Sign Up Form</p>
+                    <%-include("../fragmente/formular", {action: "/inreg"}) %>
+                </div>
+            </div>
         <% } %>
 	<% if(locals.raspuns) { %>
-	<%- locals.raspuns+"<br/>"%>
+        <div class="container_inreg">
+	        <h2><%- locals.raspuns %></h2>
+            <img class="img_t_d" src="Sources/pictures/tick.png">
+        </div>
+
 	<% } %>
 	<% if(locals.err) { %>
-	<%- locals.err %>
+        <div class="container_inreg">
+	        <p style="font-weight:bold;"><%- locals.err %></p>
+            <img class="img_t_d" src="Sources/pictures/denied.png">
+        </div>
+	
 	<% } %>
     </div>
 </main>

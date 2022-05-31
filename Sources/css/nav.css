@@ -31,7 +31,7 @@ body {
   }
   nav ul.meniu > li {
     float: left;
-    width: 150px;
+    width: 12%;
     position: relative;
     border-width: 0 !important;
   }
@@ -40,6 +40,7 @@ body {
     background-color: #80c3dd6b;
   }
   nav ul.meniu > li:hover > ul {
+    z-index:200;
     display: block;
     animation-name: aparitie_meniu;
     animation-iteration-count: 1;
@@ -52,7 +53,7 @@ body {
     display: inline-block;
     content: "→";
     color: var(--text-color);
-    transform: translateX(-100px);
+    transform: translateX(-200px);
     transition: transform 300ms linear;
   }
   nav ul.meniu > li li a:hover:before {

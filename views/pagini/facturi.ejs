@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta name="description" content="Phone Buddy - Bills">
+    <meta name="keywords" content="Phone Buddy, bills">
+    <title>Phone Buddy - Bills </title>
+    <%- include("../fragmente/head") %>
+</head>
+
+<body>
+    <%- include("../fragmente/header") %>
+
+        <main>
+            <h2>Bills</h2>
+            <% for(let factura of locals.facturi) { %>
+                <details>
+                    <summary>
+                        <%- factura.data %> / <%- factura.prenume %> <%- factura.nume %>
+                    </summary>
+
+                    <p>Customer Name: <%- factura.prenume %> <%- factura.nume %></p>
+                    <p>Date of the order: <%- factura.data %></p>
+                    <p>Ordered Products: </p>
+                    <ol>
+                        <% for(let prod of factura.produse) { %>
+                            <li>
+                                <ul>
+                                    <li>
+                                        Product Name: <%- prod.nume %>
+                                    </li>
+                                    <li>
+                                        Product Price: <%- prod.pret %>
+                                    </li>
+                                    <li>
+                                        Quantity: <%- prod.cantitate %>
+                                    </li>
+                                </ul>
+                            </li><br>
+                        <% } %>
+                    </ol>
+                </details> 
+            <% } %>
+        </main>
+        <br><br>
+        <footer>
+            <%- include('../fragmente/footer') %>
+        </footer>
+
+</body>
+
+</html>

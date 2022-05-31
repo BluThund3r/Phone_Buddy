@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Phone Buddy - Administer Products</title>
+    <meta name="keywords"
+        content="phone buddy, smartphone accesories, phone case, screen protector, earbuds, phone holder, earphones, selfie stick, earbuds, screen protector, wireless charger, charging cable">
+    <meta name="description"
+        content="Get the best quality accesories you cand find for your smartphone right here, with just a simple click!">
+    <%- include("../fragmente/head.ejs"); %>
+        <style>
+            .wrapper {
+                width: auto;
+                display: grid;
+                place-items: center;
+                margin-top: 2%;
+                margin-bottom: 2;
+                padding: 2%;
+                height: auto;
+            }
+
+            .ceva-produs {
+                background-color: rgba(255, 255, 255, 0.221);
+                border: 2px solid var(--border-color);
+                border-radius: 10px;
+                display: grid;
+                place-items: center;
+                width: auto;
+                height: auto;
+                padding: 2%;
+            }
+
+            #wrapper_1 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @media screen and (max-width:1100px) {
+                #wrapper_1 {
+                    grid-template-columns: 1fr;
+                }
+
+                #modificare_produs {
+                    margin-top: 6.5%;
+                }
+            }
+
+            #wrapper_raspuns {
+                width: 100%;
+                height: auto;
+                display: grid;
+                place-items: center;
+            }
+
+            #raspuns {
+                width: auto;
+                height: auto;
+                text-align: center;
+                font-weight: bold;
+                background-color: rgba(255, 255, 255, 0.221);
+                border: 2px solid var(--border-color);
+                border-radius: 10px;
+                padding: 1%;
+            }
+        </style>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function () {
+                var produse = '<%- JSON.stringify(locals.produse) %>';
+                produse = JSON.parse(produse);
+                console.log(produse);
+                document.getElementById("i_datalist_modif").onchange = function() {
+                    for(let prod of produse) {
+                        if(prod.id == this.value) {
+                            document.getElementById("inp-m-pname").value = prod.nume;
+                            document.getElementById("inp-m-pdesc").innerText = prod.descriere;
+                            document.getElementById("inp-m-pprice").value = prod.pret;
+                            document.getElementById("inp-m-pdisc").value = prod.discount;
+                            var tipuri = document.getElementById("sel-m-ptype").options;
+                            for(let tip of tipuri) {
+                                if(tip.value == prod.tip_produs) {
+                                    tip.selected = true;
+                                    break;
+                                }
+                            }
+
+                            var categorii = document.getElementById("sel-m-pcateg").options;
+                            for(let categ of categorii) {
+                                if(categ.value == prod.categorie){
+                                    categ.selected = true;
+                                    break;
+                                }
+                            }
+
+                            document.getElementById("inp-m-pmat").innerText = '{' + prod.materiale.join(",") + '}';
+                            document.getElementById("inp-m-pcol").value = prod.color;
+                            document.getElementById("inp-m-pret").checked = (prod.returnable)? true : false;
+                            break;
+                        }
+                    }
+                }
+                
+            });
+
+        </script>
+
+</head>
+
+<body>
+    <%- include("../fragmente/header.ejs"); %>
+        <main>
+            <h2>Administer Products</h2>
+            <% if(locals.raspuns) { %>
+                <div id="wrapper_raspuns">
+                    <% if(locals.raspuns.includes('failed')) { %>
+                        <div id="raspuns"> <span style="color:red;">
+                                <%- locals.raspuns %>
+                            </span></div>
+                        <% } %>
+
+                            <% if(!locals.raspuns.includes('failed')) { %>
+                                <div id="raspuns"> <span style="color:lime;">
+                                        <%- locals.raspuns %>
+                                    </span></div>
+                                <% } %>
+
+                </div>
+                <% } %>
+                    <div class="wrapper" id="wrapper_1">
+                        <div class="ceva-produs" id="adaugare_produs">
+                            <p style="font-size:1.3em; font-weight:bold;">Add Product</p>
+                            <form id="form_insert_prod" method="post" action="/insert_produs"
+                                enctype="multipart/form-data">
+                                <p>
+                                    <label>
+                                        Product Name: <input type="text" name="pname" id="inp-pname" value="" required>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Description: <textarea form="form_insert_prod" id="inp-pdesc"
+                                            name="pdesc" required></textarea>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Price: <input type="text" name="pprice" id="inp-pprice" value=""
+                                            required pattern="\d{1,6}\.\d{2}">
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Discount: <input type="text" name="pdisc" id="inp-pdisc" value=""
+                                            required pattern="[0-9]|[1-6][0-9]|7[0-4]"> %
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Type: <select name="ptype" id="sel-ptype" required>
+                                            <option value="phone_cases" selected selected>Phone Cases</option>
+                                            <option value="pop-sockets">Pop Sockets</option>
+                                            <option value="chargers">Chargers</option>
+                                            <option value="phone holders">Phone Holders</option>
+                                            <option value="earbuds">Earbuds</option>
+                                            <option value="earphones">Earphones</option>
+                                            <option value="armbands">Armbands</option>
+                                            <option value="bluetooth_speaker">Bluetooth Speaker</option>
+                                            <option value="waterproof_phone_pouch">Waterproof Phone Pouch</option>
+                                            <option value="screen_protectors">Screen Protectors</option>
+                                            <option value="smartwatch">Smartwatch</option>
+                                            <option value="fitness_tracker">Fitness Tracker</option>
+                                            <option value="microsd_card">MicroSD Card</option>
+                                            <option value="selfie_stick">Selfie Stick</option>
+                                            <option value="car_holder">Car Holder</option>
+                                            <option value="wireless_charger">Wireless Charger</option>
+                                        </select>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Product Category: <select name="pcateg" id="sel-pcateg" required>
+                                            <option value="phone_cases_and_screen_protectors" selected selected>Phone
+                                                Cases and Screen Protectors</option>
+                                            <option value="tech_accessories">Tech Accessories</option>
+                                            <option value="phone_holders_and_waterproof_bags">Phone Holders and
+                                                Waterproof Bags</option>
+                                        </select>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Product Materials: <textarea form="form_insert_prod" id="inp-pmat" name="pmat" placeholder="Type the materials in the format {mat1,mat2,...}"
+                                            required></textarea>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Product Color: <input type="text" required name="pcol" id="inp-pcol" value="">
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Returnable ? <input type="checkbox" id="inp-pret" name="pret">
+                                    </label>
+                                </p>
+
+                                <p id="prod_img">
+                                    <label>
+                                        Product Picture: <input type="file" name="imagine">
+                                    </label>
+                                </p>
+
+
+                                <p style="text-align: center;">
+                                    <input type="submit" value="Add">
+                                    <input type="reset" value="Reset">
+                                </p>
+                            </form>
+                        </div>
+                        <div class="ceva-produs" id="modificare_produs">
+                            <p style="font-size:1.3em; font-weight:bold;">Modify Product</p>
+                            <form method="post" action="/modifica_produs" enctype="multipart/form-data"
+                                id="form_modif_prod">
+                                <p><label><span style="font-size:1.1em;font-weight:bold;">Select Product:</span>
+                                        <input list="id_lista_modif" id="i_datalist_modif" value="" name="id">
+                                        <datalist id="id_lista_modif">
+                                            <% for(let prod of locals.produse){ %>
+                                                <option value="<%- prod.id %>">
+                                                    <%- prod.nume %>
+                                                </option>
+                                                <% } %>
+                                        </datalist>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Name: <input type="text" name="m_pname" id="inp-m-pname" value="" required>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Description: <textarea form="form_modif_prod" id="inp-m-pdesc"
+                                            name="m_pdesc" required></textarea>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Price: <input type="text" name="m_pprice" id="inp-m-pprice" value=""
+                                            required pattern="\d{1,6}\.\d{2}">
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Discount: <input type="text" name="m_pdisc" id="inp-m-pdisc" value=""
+                                            required pattern="[0-9]|[1-6][0-9]|7[0-4]"> %
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Product Type: <select name="m_ptype" id="sel-m-ptype" required>
+                                            <option value="phone_cases" selected>Phone Cases</option>
+                                            <option value="pop-sockets">Pop Sockets</option>
+                                            <option value="chargers">Chargers</option>
+                                            <option value="phone holders">Phone Holders</option>
+                                            <option value="earbuds">Earbuds</option>
+                                            <option value="earphones">Earphones</option>
+                                            <option value="armbands">Armbands</option>
+                                            <option value="bluetooth_speaker">Bluetooth Speaker</option>
+                                            <option value="waterproof_phone_pouch">Waterproof Phone Pouch</option>
+                                            <option value="screen_protectors">Screen Protectors</option>
+                                            <option value="smartwatch">Smartwatch</option>
+                                            <option value="fitness_tracker">Fitness Tracker</option>
+                                            <option value="microsd_card">MicroSD Card</option>
+                                            <option value="selfie_stick">Selfie Stick</option>
+                                            <option value="car_holder">Car Holder</option>
+                                            <option value="wireless_charger">Wireless Charger</option>
+                                        </select>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Product Category: <select name="m_pcateg" id="sel-m-pcateg" required>
+                                            <option value="phone_cases_and_screen_protectors" selected>Phone
+                                                Cases and Screen Protectors</option>
+                                            <option value="tech_accessories">Tech Accessories</option>
+                                            <option value="phone_holders_and_waterproof_bags">Phone Holders and
+                                                Waterproof Bags</option>
+                                        </select>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Product Materials: <textarea form="form_modif_prod" id="inp-m-pmat" name="m_pmat" placeholder="Type the materials in the format {mat1,mat2,...}"
+                                            required></textarea>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Product Color: <input type="text" required name="m_pcol" id="inp-m-pcol" value="">
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Returnable ? <input type="checkbox" id="inp-m-pret" name="m_pret">
+                                    </label>
+                                </p>
+
+                                <p id="prod_m_img">
+                                    <label>
+                                        Product Picture: <input type="file" name="imagine">
+                                    </label>
+                                </p>
+                                <p style="text-align:center;"><input type="submit" value="Update"></p>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <div class="ceva-produs" id="stergere_produs">
+                            <p style="font-weight:bold; font-size:1.3em;">Delete Product</p>
+                            <form method="post" action="/sterge_produs" enctype="multipart/form-data"
+                                id="form_del_prod">
+                                <label>Select Product:
+                                    <input list="id_lista" id="i_datalist" value="" name="id">
+                                    <datalist id="id_lista">
+                                        <% for(let prod of locals.produse){ %>
+                                            <option value="<%- prod.id %>">
+                                                <%- prod.nume %>
+                                            </option>
+                                            <% } %>
+                                    </datalist>
+                                </label>
+                                <p style="text-align:center;"><input type="submit" value="Delete"></p>
+                            </form>
+                        </div>
+                    </div>
+        </main>
+        <%- include("../fragmente/footer.ejs"); %>
+
+</body>
+
+</html>

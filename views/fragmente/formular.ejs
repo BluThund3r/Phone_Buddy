@@ -1,45 +1,72 @@
 <form id="form_inreg"  method="post" class="date"  action="<%= locals.action %>"  enctype="multipart/form-data">
     <p>
         <label>
-            Username: <input type="text" name="username" id="inp-username" value="prof<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
+            <span id="username_text">Username*</span> : <input type="text" name="username" id="inp-username" value="" required pattern="[A-Za-z0-9]+">
         </label>
     </p>
     <p>
         <label>
-            First Name: <input type="text" name="prenume" id="inp-prenume" value="Gogu"  >
+            <span id="prenume_text">First Name*</span> : <input type="text" name="prenume" id="inp-prenume" value="Gogu" required pattern="[A-Za-z\s\-]+">
         </label>
     </p>
     <p>
         <label>
-            Last name: <input type="text" name="nume" id="inp-nume"  value="Gogulescu" >
+            <span id="nume_text">Last name*</span> : <input type="text" name="nume" id="inp-nume"  value="Gogulescu" required pattern="[A-Za-z\s\-]+">
         </label>
     </p>
-    <p>
+    <% if(locals.action && locals.action != "/profil") { %>
+    <p id="p-verif">
         <label>
-            Password: <input id="parl" type="password" required  name="parola" value="">
+            <span id="old_parola_text">Password*</span> : <input id="parl" type="password" required  name="parola" value="" minlength="4">
         </label>
     </p>
-    <p id="p-reintrod">
+    <% } %>
+    <p>
         <label >
-            Confirm password: <input id="rparl" required type="password" name="rparola" value="">
+            <span id="new_parola_text">Confirm password*</span> : <input id="rparl" required type="password" name="rparola" value="">
         </label>
     </p>
     <p>
         <label>
-            Email: <input type="text" name="email" id="inp-email" required value="profprofprof007@gmail.com"  size="50">
+            <span id="email_text">Email*</span> : <input type="text" name="email" id="inp-email" required value="utilizator.proiect2022@gmail.com"  size="50">
         </label>
     </p>
     <p>
         <label>
-            Chat color: <select name="culoare_chat" id="sel-culoare"><option value="red" selected>rosu</option><option value="green">verde</option><option value="blue">albastru</option></select>
+            Chat color: <select name="culoare_chat" id="sel-culoare">
+                <option value="black" selected>Black</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select>
         </label>
     </p>
     <p>
+        <label>
+            Occupation: <select name="ocupatie" id="sel-ocupatie">
+                <option value="not_say" selected>Rather Not Say</option>
+                <option value="student">Student</option>
+                <option value="full_time_job">Full Time Job</option>
+                <option value="part_time_job">Part Time Job</option>
+                <option value="unemployed">Unemployed</option>       
+            </select>
+        </label>
+    </p>
+    <p id="input_img">
         <label>
             Picture: <input type="file" name="poza">
         </label>			
     </p>
-    <p>		
+    <% if(locals.action && locals.action == "/profil") { %>
+        <br>
+        <p id="p-verif">
+            <label>
+                <span id="old_parola_text">Password*</span> : <input id="parl" type="password" required  name="parola" value="" minlength="4">
+            </label>
+        </p>
+        <p style="text-align:center; font-weight:bold;">Fill in this field in order to update the details</p>
+        <% } %>
+    <p style="text-align: center;">		
         <input type="submit" value="Submit">
         <input type="reset" value="Reset">
     </p>

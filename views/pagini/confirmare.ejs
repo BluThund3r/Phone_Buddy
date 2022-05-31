@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html lang="ro">
 	<head>
-		<title>Eroare</title>
+		<title>Phone Buddy - Confirm Successful</title>
 		<%- include("../fragmente/head") %>
+		<style>
+            .img_conf{
+                border:none !important;
+                display:inline-block;
+            }
+            
+            .container_inreg{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                column-gap: 8%;
+                margin-bottom:8%;
+            }
+        </style>
 	</head>
 	<body class="container">
 		<header>
@@ -10,8 +24,10 @@
 		</header>
 		<main>
 			
-			<h1>Confirmare mail</h1>
-			<p>Totul a functionat bine!</p>
+		<div class="container_inreg">
+	        <h2>Account confirmed!</h2>
+            <img class="img_conf" src="/Sources/pictures/confirmed.png">
+        </div>
 		</main>
 		
 		<%- include("../fragmente/footer") %>

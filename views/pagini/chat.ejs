@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Phone Buddy - Chat</title>
+	<%- include("../fragmente/head") %>
+	<style>
+	#mesaje_chat{
+		border:2px solid var(--border-color);
+		border-radius:10px;
+		height:300px;;
+		overflow:auto;
+		width:80%;
+		background-color: rgba(255, 255, 255, 0.236);
+	}
+
+	#wrapper_mesaje_chat {
+		width:auto;
+		height:auto;
+		display: grid;
+		place-items:center;
+		padding:2%;
+	}
+
+	#mesaj {
+		resize: none;
+	}
+
+	#inputs {
+		display:grid;
+		width:100%;
+		height:auto;
+		place-items:center;
+		align-items: start;
+	}
+
+	#wrapper_send {
+		display:grid;
+		place-items:center;
+		width:inherit;
+		height:auto;
+		padding:2%;
+	}
+
+	</style>
+	<script type="text/javascript" src="/Sources/js/socket.io.js"></script> 
+	<script>port=<%=  locals.port %></script>
+	<script>
+	function round(x) {
+		if(x < 10)
+			return "0" + x;
+		return x;
+	}
+	
+	
+	socketUrl = "../../";  
+	if(document.location.href.indexOf("localhost") != -1) {  
+		socketUrl = "http://127.0.0.1:"+port;
+	}
+	//const socket = io(socketUrl,{reconnect: true});  
+	socket = io();
+	socket.on("mesaj_nou", function(emoji, mesaj, nume, prenume, culoare) {  
+	
+		var chat=document.getElementById("mesaje_chat");
+		let data = new Date();
+		chat.innerHTML+=`<p> <span style="font-weight:bold;">${nume} ${prenume}</span>, ${round(data.getHours())}:${round(data.getMinutes())}:${round(data.getSeconds())} says: <span style='color:${culoare}'>${mesaj}</span>${emoji}</p> `;
+		
+
+		//ca sa scrolleze la final
+		chat.scrollTop=chat.scrollHeight;
+	});
+	
+	function trimite(){
+		var radioBts = document.getElementsByName("emoji");
+		var emoji = "";
+		for(let btn of radioBts) {
+			if(btn.checked) {
+				emoji = btn.value;
+				break;
+			}
+		}
+		var mesaj=document.getElementById("mesaj").value;
+		fetch("/mesaj",  {		
+		
+					method: "POST",
+					headers:{'Content-Type': 'application/json'},
+					
+					mode: 'cors',		
+					cache: 'default',
+					body: JSON.stringify({
+						emoji: emoji,
+						mesaj:mesaj
+					})
+				})
+
+
+}
+
+	</script>
+	</head>
+	<body>
+		<header>
+			<%- include("../fragmente/header") %>
+		</header>
+		<main>
+			<h2 style="text-align:center;">Live Chat</h2>
+			<div id="chat">
+				<div id="wrapper_mesaje_chat">
+					<div id="mesaje_chat">
+					</div>
+					<!-- <script>
+						
+						let temp = document.getElementById("mesaje_chat");
+						let data = new Date();
+						// temp.innerHTML = `<p> ${roundMinSec(data.getHours())}:${roundMinSec(data.getMinutes())}:${roundMinSec(data.getSeconds())} </p>`
+						temp.innerHTML+=`<p> <span style="font-weight:bold;">Gigi Migi</span>, ${round(data.getHours())}:${round(data.getMinutes())}:${round(data.getSeconds())} says: <span style='color:lime'>Salut!</span>&#128512;</p> `;
+					</script> -->
+				</div>
+				<div id="inputs">
+					<label>
+						<textarea id="mesaj" name="mesaj" rows="5" cols="50" placeholder="Type your message here!&#10;You can also select an emoji from the options below."></textarea>
+					</label>
+					<div>
+						Emoji:&nbsp;&nbsp;
+						<label>&#128512;
+							<input id="fericit"  name="emoji" value="&#128512;" type="radio"/>
+						</label>&nbsp;
+						<label>&#128542;
+							<input id="nefericit"  name="emoji" value="&#128542;" type="radio"/>
+						</label>&nbsp;
+						<label>&#128528;
+							<input id="neutru" name="emoji" value="&#128528;" type="radio"/>
+						</label>&nbsp;
+						<label> None
+							<input id="none" checked name="emoji" value="" type="radio"/>
+						</label>
+					</div>
+				</div>
+				<div id="wrapper_send">
+					<button onclick="trimite()">Send</button>
+				</div>
+			</div>
+		</main>
+		<%- include("../fragmente/footer") %>
+		
+	</body>
+</html>

@@ -1,0 +1,24 @@
+#calendar{
+    display:grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-gap:0.2rem;
+    margin:0;
+    background-color:transparent !important;
+    color:var(--text-color);
+}
+
+#calendar .clr_bg {
+    background-color: transparent !important;
+}
+
+#calendar div:nth-child(n+8).zi{
+    border:1px solid white;
+}
+
+#calendar div:nth-child(n+8).eveniment{
+    background-color: var(--highlight-color) !important;
+}
+
+.nday {
+    font-weight:bold;
+}

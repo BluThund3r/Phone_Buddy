@@ -1,42 +1,205 @@
 <!DOCTYPE html>
 <html lang="ro">
-	<head>
-		<title>Profil</title>
-		<%- include("../fragmente/head") %>
-        
-		<link rel="stylesheet" type="text/css" href="/resurse/css/contact.css" />
+
+<head>
+	<title>Profile</title>
+	<%- include("../fragmente/head") %>
+
+		<link rel="stylesheet" type="text/css" href="/Sources/css/contact.css" />
 		<script>
 
 			// populez inputurile din pagina de profil cu datele din tabel (incarcate prin EJS)
-			window.addEventListener("DOMContentLoaded", function(){
-				document.getElementById("inp-username").value="<%= locals.utilizator.username %>";
-				document.getElementById("inp-username").readOnly=true;
-				document.getElementById("inp-nume").value="<%= locals.utilizator.nume %>";
-				document.getElementById("inp-prenume").value="<%= locals.utilizator.prenume %>";
-				document.getElementById("inp-email").value="<%= locals.utilizator.email %>";
-				document.getElementById("p-reintrod").remove();
-				var optiuni=document.getElementById("sel-culoare").options
+			window.addEventListener("DOMContentLoaded", function () {
+				document.getElementById("inp-username").value = "<%= locals.utilizator.username %>";
+				document.getElementById("inp-username").readOnly = true;
+				document.getElementById("inp-nume").value = "<%= locals.utilizator.nume %>";
+				document.getElementById("inp-prenume").value = "<%= locals.utilizator.prenume %>";
+				document.getElementById("inp-email").value = "<%= locals.utilizator.email %>";
+				document.getElementById("username_text").innerHTML = "Username";
+				document.getElementById("nume_text").innerHTML = "Last Name";
+				document.getElementById("prenume_text").innerHTML = "First Name";
+				document.getElementById("new_parola_text").innerHTML = "New Password";
+				document.getElementById('rparl').required = false;
+				document.getElementById("email_text").innerHTML = "Email";
+				document.getElementById("old_parola_text").innerText = "(Old) Password*";
+				var optiuni = document.getElementById("sel-culoare").options;
 				for (let opt of optiuni)
-					if (opt.value=="<%= locals.utilizator.culoare_chat %>")
-						opt.selected=true;
+					if (opt.value == "<%= locals.utilizator.culoare_chat %>") {
+						opt.selected = true;
+						break;
+					}
+
+				var ocupatii = document.getElementById("sel-ocupatie").options;
+				for (let ocp of ocupatii)
+					if (ocp.value == "<%- locals.utilizator.ocupatie %>") {
+						ocp.selected = true;
+						break;
+					}
 			});
 		</script>
-	</head>
-	<body class="container">
-		<header>
-			<%- include("../fragmente/header") %>
-		</header>
-		<main>
-		
-			<section>
-				<h2>Profil</h2>
-                <p>Mănânci prea multe prajituri și știi și tu asta!</p>
-				<p><%= locals.raspuns %></p>
-			</section>
-			<%- include("../fragmente/formular",{action:"/profil"}) %>
-		</main>
-		
-		<%- include("../fragmente/footer") %>
-		
-	</body>
+
+		<style>
+			#wrapper_form_update {
+				width: 100%;
+				height: auto;
+				display: grid;
+				place-items: center;
+				grid-template-columns: 1fr 1fr;
+			}
+
+			#form_update {
+				background-color: rgba(255, 255, 255, 0.221);
+				width: auto;
+				height: auto;
+				display: grid;
+				place-items: center;
+				padding: 2%;
+				border: 2px solid var(--border-color);
+				border-radius: 10px;
+			}
+
+			#raspuns {
+				border: 2px solid var(--border-color);
+				border-radius: 10px;
+				background-color: rgba(255, 255, 255, 0.221);
+				width: auto;
+				height: auto;
+				padding: 1%;
+				margin-bottom:2%;
+			}
+
+			#wrapper_form_delete {
+				border: 2px solid var(--border-color);
+				border-radius: 10px;
+				background-color: rgba(255, 255, 255, 0.221);
+				width: 50%;
+				height: auto;
+				padding: 1%;
+				display: grid;
+				place-items: center;
+			}
+
+			#center_form_delete {
+				width:auto;
+				display:grid;
+				height:auto;
+				place-items: center;
+			}
+
+			#wrapper_raspuns {
+				width:100%;
+				height:auto;
+				display:grid;
+				place-items: center;
+			}
+
+			#container-interested {
+				text-align:center;
+				font-size:1.2em;
+				background-color: rgba(255, 255, 255, 0.221);
+				border:2px solid var(--border-color);
+				border-radius:10px;
+				padding:2%;
+				width:auto;
+			}
+
+			#interested a {
+				color:var(--text-color);
+				font-weight:bold;
+			}
+
+			#interested a:hover {
+				color:var(--highlight-color);
+			}
+
+
+		</style>
+</head>
+
+<body class="container">
+	<header>
+		<%- include("../fragmente/header") %>
+	</header>
+	<main>
+		<section>
+			<h2>Profile</h2>
+			<p style="text-align:center;font-weight:bold; font-size:1.5em;">We are glad to have you as our customer!
+				&#128516;</p>
+			<% if(locals.raspuns) { %>
+				<div id="wrapper_raspuns">
+					<div id="raspuns">
+						<% if(locals.raspuns=="succes" ) { %>
+							<p style="text-align:center; font-weight:bold; color:lime; font-size:1.3em;">Update Successful!
+							</p>
+							<% } %>
+						<% if(locals.raspuns=="failed" ) { %>
+							<p style="text-align:center; font-weight:bold; color:red; font-size:1.3em;">Update Failed!</p>
+							<p style="text-align:center; font-weight:bold; color:red; font-size:1.3em;">Make sure that you enter the correct (old) password!</p>
+						<% } %>
+					</div>
+				</div>
+			<% } %>
+		</section>
+		<div id="wrapper_form_update">
+			<figure style="display:grid;place-items:center;">
+				<figcaption style="font-weight:bold; font-size:1.8em;">Logged in as </figcaption><br><br>
+				<img style="aspect-ratio: 1/1;width:50%; height:auto;border:2px solid var(--border-color);border-radius:100%"
+					src="../../<%- locals.utilizator.cale_imagine %>"><br>
+				<figcaption style="font-weight:bold; font-size:1.25em;">
+					<%- locals.utilizator.username %>
+				</figcaption>
+			</figure>
+			<div id="form_update">
+				<p style="font-weight:bold; font-size:1.25em;">Update the info about your account</p>
+				<%- include("../fragmente/formular",{action:"/profil"}) %>
+			</div>
+		</div>
+		<br><br>
+		<div id="container-interested">
+			It seems that you are interested in purchasing: <span id="interested">not much at the moment :)</span>
+		</div>
+		<script>
+			let nume_ultim_prod = getCookie("nume_ultim_produs");
+			if(nume_ultim_prod) {
+				let id_ultim_prod = getCookie("id_ultim_produs");
+				document.getElementById("interested").innerHTML = `<a href="/product/${id_ultim_prod}">${nume_ultim_prod}</a>`;
+			}
+		</script>
+		<br><br>
+		<div id="center_form_delete">
+			<div id="wrapper_form_delete">
+				<p style="font-weight:bold; font-size:1.25em; color:red;">Delete your account</p>
+				<form id="form_del_acc" method="post" class="date" action="/sterge_cont" enctype="multipart/form-data">
+					<p style="display:none;">
+						<label>
+							Id: <input type="text" name="id_del" id="id_del" value="<%- locals.utilizator.id %>">
+						</label>
+					</p>
+					<p style="display:none">
+						<label>
+							Email: <input type="text" name="email_del" id="email_del"
+								value="<%- locals.utilizator.email %>">
+						</label>
+					</p>
+					<p style="text-align:center;">
+						<label>
+							Password*: <input id="parl_del" type="password" required name="parl_del" value=""
+								minlength="4">
+						</label>
+					</p>
+					<p>Please enter your password to confirm deleting your account!</p>
+					<p style="text-align: center;">
+						<input type="submit" value="Delete">
+					</p>
+
+				</form>
+
+			</div>
+		</div>
+	</main>
+
+	<%- include("../fragmente/footer") %>
+
+</body>
+
 </html>

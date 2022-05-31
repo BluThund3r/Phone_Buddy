@@ -71,18 +71,27 @@ main{
     position: relative;
 }
 
-#select-wrapper{
-    display:flex;
-    width:100%;
-    align-items: center;
-    justify-content: center;
+#i_datalist{
+    border-radius: 5px;
+}
+
+
+
+.select-wrapper{
+    display:grid;
+    position:relative;
+    grid-template-columns: 1fr 1fr;
+    height:auto;
+    width:auto;
+    place-items:center;
+    padding:5%;
+    margin:0;
+    bottom:5%;
 }
 
 .selecteaza-cos{
     display: block;
     background-color: var(--border-color);
-    position:absolute;
-    bottom:0.5rem;
     border-radius: 0.5rem;
     text-align: center;
     padding:0.3rem;

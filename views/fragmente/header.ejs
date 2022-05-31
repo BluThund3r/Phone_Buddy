@@ -4,10 +4,63 @@
         document.body.classList.add("dark");
     else
         document.body.classList.remove("dark");
+
+    window.addEventListener("DOMContentLoaded", function(){
+        if(document.getElementsByClassName("dark").length == 1){
+            document.getElementById("btn_tema").innerHTML = '<i style="font-size:1.25rem;color:rgb(222, 207, 8);" class="fa-solid fa-sun"></i>';
+        }
+
+        else {
+            document.getElementById("btn_tema").innerHTML = '<i style="font-size:1.25rem;color: rgb(10, 10, 69);" class="fa-solid fa-moon"></i>';
+        }
+    })
+
 </script>
 <header>
-    <div id="logo"><i class="fa-solid fa-mobile-screen-button fa-2x"></i>
-        <h1>Phone Buddy</h1 >
+    <div id = "cont_logo_login">
+        <div id="logo"><i id="logo_fa" class="fa-solid fa-mobile-screen-button fa-2x"></i>
+            <h1><span id="site_title">Phone Buddy</span></h1>
+        </div>
+        <!-- <div style="background-color: transparent !important; height:auto; width:auto;"></div> -->
+        <div id="user_place">
+            <% if(!locals.utilizator){ %>
+                <form id="form_login"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
+                    <p style="color:var(--text-color)">
+                        <label>
+                            Username: <input type="text" name="username" id="inp-username" value="" required pattern="[A-Za-z0-9]+">
+                        </label>
+                    </p> 
+                    <p style="color:var(--text-color)">
+                        <label>
+                            Password:&nbsp;&nbsp;<input id="parl_login" type="password" required  name="parola_login" value="">
+                        </label>
+                    </p>
+                    <p>
+                        <input  class="button" type="submit" value="Log in">
+                    </p>
+                    </form>
+                    <% } %>
+                    <% if(locals.mesajLogin) {%>
+                    <p style="color:red;"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;<%- locals.mesajLogin %></p>
+                    <% } %>
+            <% if(locals.utilizator){ %>
+            <span style="color:var(--text-color)">
+                <p>You are logged in as 
+                    <span style="font-weight:bold;"><%- locals.utilizator.prenume %> <%- locals.utilizator.nume %></span></p>
+                <p style="text-align:right;"><a style="color:var(--text-color) !important;" href="/logout"><i id="logout_icon" class="fa-solid fa-right-from-bracket"></i></a>
+                    &nbsp;&nbsp;<a style="color:var(--text-color) !important;" href="/chat"><i id="cart_icon" class="fa-solid fa-message"></i></a></p>
+            </span>
+            <% } %>
+        </div>    
+        
+
+    </div>
+    <div id="container_btn_tema">
+        <div style="width:auto;height:10%;line-height:10%;background-color:var(--highlight-color);display:inline-block; padding:3px !important;padding-bottom:1.5px;padding-top:1.5px;border:3px solid var(--border-color); border-radius:10px;font-size:2rem;" id="btn_tema" title="Change Theme">
+        </div>
+        <scrypt>
+            
+        </scrypt>
     </div>
     <div id="title"><h1>Phone Buddy</h1></div>
     <nav>
@@ -44,6 +97,9 @@
                     <!-- <li><a href = "/products?type=<%- elem.unnest %>" style="text-transform:capitalize;"><%- //tempCategAf[elem.unnest] %></a></li> -->
                     <li><a href = "/products?type=<%- elem.unnest %>" style="text-transform:capitalize;"><%- elem.unnest.split("_").join(" ") %></a></li>
                     <% } %>
+                    <% if(locals.utilizator && locals.utilizator.rol=="admin"){%>
+                        <li><a href="/admin_products">Administer</a></li>
+                    <% } %>
                 </ul>
             </li>
             <li>
@@ -54,8 +110,17 @@
                 </ul>
             </li>
             <li>
-                <div><a href = "/inregistrare">Log in / Sign Up</a></div>
+                <div><a href = "/inregistrare">Sign Up</a></div>
             </li>
+            <li>
+                <div><a href = "/contact">Forum</a></div>
+            </li>
+            <li>
+                <div><a href = "/cos-virtual">Cart</a></div>
+            </li>
+            <% if(locals.utilizator && locals.utilizator.rol=="admin"){ %>
+                <li><a href="/useri">Users</a></li>
+            <% } %>
             <% if(locals.utilizator){ %>
                 <li><div><%- locals.utilizator.username %></div>
                     <ul>
@@ -65,6 +130,6 @@
                 </li>
                 <% } %>
         </ul>
-    </nav>
-    <p><button id="btn_tema">Change Theme</button></p>
+    </nav><br>
+   
 </header>

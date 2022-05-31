@@ -3,7 +3,7 @@
     if(formular){
     formular.onsubmit= function(){
             if(document.getElementById("parl").value!=document.getElementById("rparl").value){
-                alert("Nu ati introdus acelasi sir pentru campurile \"parola\" si \"reintroducere parola\".");
+                alert("\"Password\" and \"Confirm Password\" fields must contain the same value!");
                 return false;
             }
             console.log(formular);

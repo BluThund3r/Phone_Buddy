@@ -9,20 +9,24 @@
                 display:grid;
                 grid-template-columns: 1fr 1fr;
                 align-items: center;
+                background-color:rgba(255, 255, 255, 0.217);
+                padding:1%;
+                border:2px solid var(--border-color);
+                border-radius:10px;
             }
 
             figure{
                 margin:0;
             }
 
-            img{
+            .imag-produs > img{
                 width:100% !important;
                 height:auto;    
             }
         </style>
         <title>Phone Buddy - Product #<%- locals.prod.id %></title>
         <%- include("../fragmente/head") %>     
-        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+        <link href="/Sources/css/produs.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
     <%- include("../fragmente/header") %>
@@ -35,14 +39,14 @@
                         <span>
                             <h3><span class="nume"><%- locals.prod.nume %></span></h3>
                             <p>Id: <span class="id"> art<%- locals.prod.id %> </span></p>
-                            <p>Category: <span class="categorie"><% let temp = locals.prod.categorie.split("_").join(" ") %><%- temp %> </span></p>
-                            <p>Product type: <span class="tip-produs"> <% let temp2 = locals.prod.tip_produs.split("_").join(" ") %><%- temp %> </span></p>
-                            <p>Price: <span class="pret"><%- locals.prod.pret %> </span></p>
+                            <p>Category: <span class="categorie" style="text-transform:capitalize;"><% let temp = locals.prod.categorie.split("_").join(" ") %><%- temp %> </span></p>
+                            <p>Product type: <span class="tip-produs" style="text-transform:capitalize;"> <% let temp2 = locals.prod.tip_produs.split("_").join(" ") %><%- temp2 %> </span></p>
+                            <p>Price: <span class="pret"><%- locals.prod.pret %> </span>RON</p>
                             <p>Description: <span class="descriere"><%- locals.prod.descriere %> </span></p>
                             <p>Color: <span class="culoare"><%- locals.prod.color %> </span></p>
                             <p>Materials: <span class="ingrediente"><%- locals.prod.materiale %> </span></p>
-                            <p>Discount: <span class="calorii"><%- locals.prod.discount %> </span></p>
-                            <p>Returnable: <span class="pt_diabetici"><%- locals.prod.pt_diabetici ? "Yes" : "No" %> </span></p>
+                            <p>Discount: <span class="calorii"><%- locals.prod.discount %> </span>%</p>
+                            <p>Returnable: <span class="pt_diabetici"><%- locals.prod.returnable ? "Yes" : "No" %> </span></p>
                             
                             <% 
                                             const days = {

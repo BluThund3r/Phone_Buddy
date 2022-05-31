@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta name="description" content="Phone Buddy - Log Out">
+    <meta name="keywords" content="Phone Buddy, logout">
+    <link rel="stylesheet" href="/Sources/css/produse.css" type="text/css" />
+    <title>Phone Buddy - Log Out </title>
+    <%- include("../fragmente/head") %>
+        <script type="text/javascript" src=/Sources/js/produse.js></script>
+    <style>
+        #img_logout{
+            border:none !important;
+            display:inline-block;
+        }
+
+        #container_logout{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 8%;
+            margin-bottom:8%;
+            background-color: rgba(255, 255, 255, 0.221);
+            padding:10%;
+            border-radius:10px;
+        }
+
+        #raspuns {
+            display:grid;
+            width:auto;
+            height:200%;
+            grid-template-columns: 1fr 1fr;
+            place-items: center;
+            padding:2%;
+            background-color:rgba(255, 255, 255, 0.221);
+            border-radius:10px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+        <div id="raspuns">
+            <% if(locals.result) { %>
+                <h2>Account deleted successfully</h2>
+                <img style="border:none !important;" src="/Sources/pictures/tick.png">
+            <% } %>
+
+            <% if(!locals.result) { %>
+                <h2>Error while trying to delete account</h2>
+                <img style="border:none !important;" src="/Sources/pictures/denied.png">
+            <% } %>
+        </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+</body>
+
+</html>

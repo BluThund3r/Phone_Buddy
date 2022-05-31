@@ -3,51 +3,93 @@
     <head>
         <meta name="description" content="Cofetaria Dulcelind - utilizatori.">
         <meta name="keywords" content="cofetarie, Dulcelind, utilizatori">
-        <link rel="stylesheet" href="/resurse/css/useri.css" type="text/css" />
-        <title>Cofetăria Dulcelind - utilizatori</title>
+        <link rel="stylesheet" href="/Sources/css/useri.css" type="text/css" />
+        <title>Phone Buddy - Users</title>
         <%- include("../fragmente/head") %>     
-        <script type="text/javascript" src=/resurse/js/produse.js></script>
+        <script type="text/javascript" src=/Sources/js/produse.js></script>
+
+		<style>
+			#users_wrapper{
+				display:grid;
+				place-items:center;
+				padding:5%;
+				width:auto;
+				border:2px solid var(--border-color);
+				border-radius:10px;
+				background-color: rgba(255, 255, 255, 0.221);
+			}
+
+			#useri {
+				width:auto;
+				border:0px solid transparent !important;
+				padding:2%;
+			}
+			#useri td, #useri th {
+				text-align: center;
+				padding-top:1%;
+				padding-bottom:1%;
+				width:auto; 
+			}
+
+			#raspuns {
+				border:2px solid var(--border-color);
+				border-radius: 10px;
+				background-color: rgba(255, 255, 255, 0.697);
+				width: auto;
+				height: auto;
+				padding:1%;
+			}
+
+		</style>
     </head>
     <body>
     <%- include("../fragmente/header") %>
 
     <main>
     <div class="afisaj">
-        <h2>Useri</h2>
-
-		<table id="useri">
-		  <tr>
-			<th>id</th><th>Username</th><th>Nume</th><th>Prenume</th><th>Data</th><th>Rol</th>
-		  </tr>
-
-		  <% for (var i = 0; i < useri.length; i++) { 
-				if(useri[i].rol=="comun"){
-				%>
-				<tr>
-				  <td><%= useri[i].id %></td>
-				  <td><%= useri[i].username %></td>
-				  <td><%= useri[i].nume %></td>
-				  <td><%= useri[i].email %></td>
-				  <%  
-					d=new Date(useri[i].data_adaugare)
-					sir_data=`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
-				  %>
-				  <td><%=  sir_data %></td>
-				   <td><%=  useri[i].rol %></td>
-				</tr> 
-   
-				<% } %>			
-		  <% } %>
-		</table>
+        <h2>Users</h2>
 		
-		<p>Sterge utilizator</p>
-		<form id="sterge" method="post" action="/sterge_utiliz">
-			<label>
-				Id: <input type="text" name="id_utiliz" value="">
-			</label>
-			
-			<input type="submit" value="Submit">
-		</form>
+		<div id="users_wrapper">
+			<% if(locals.result) { %>
+				<div id="raspuns">
+					<% if(locals.result.startsWith("User")) { %>
+						<p style="text-align:center; font-weight:bold; color:lime; font-size:1.3em;"> <%- locals.result %></p>
+					<% } %>
+					<% if(!locals.result.startsWith("User")) { %>
+						<p style="text-align:center; font-weight:bold; color:red; font-size:1.3em;"> <%- locals.result %></p>
+					<% } %>
+				</div>
+			<% } %>
+			<table id="useri">
+			<tr>
+				<th>First Name</th><th>Last Name</th><th>Username</th><th>Email</th><th>Delete User Account</th>
+			</tr>
+
+			<% for (var i = 0; i < useri.length; i++) { 
+					if(useri[i].rol=="comun"){
+					%>
+					<tr>
+						<td><%= useri[i].prenume %></td>
+						<td><%= useri[i].nume %></td>
+						<td><%= useri[i].username %></td>
+						<td><%= useri[i].email %></td>
+						<td>
+							<form id="sterge" method="post" action="/sterge_utiliz">
+								<label style="display:none;">
+									Id: <input type="text" name="id_utiliz" value="<%= useri[i].id %>">
+								</label>
+								
+								<input type="submit" value="Delete User">
+							</form>
+						</td>
+					</tr> 
+	
+					<% } %>			
+			<% } %>
+			</table>
+		</div>
+		
+		
 	</div>
 </main>
 

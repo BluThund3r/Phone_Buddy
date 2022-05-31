@@ -1,4 +1,33 @@
 window.addEventListener("load", function(){
+
+    //bifare elemente din cosul virtual (localStorage)
+
+    var iduriProduse = this.localStorage.getItem("cos-virtual");
+    var qttysProduse = []
+    if(iduriProduse) {
+        let produse = iduriProduse.split(",");
+        iduriProduse = [];
+        for(let prod of produse) {
+            let pieces = prod.split("|");
+            iduriProduse.push(pieces[0]);
+            qttysProduse.push(pieces[1]);
+        }
+    }
+
+    else {
+        iduriProduse = [];
+    }
+
+    for(let i = 0; i < iduriProduse.length; i ++) {
+        var ch = document.querySelector(`.select-cos[value='${iduriProduse[i]}']`)
+        if(ch) {
+            ch.checked = true;
+            var qtty = ch.parentNode.parentNode.childNodes[1].childNodes[3];
+            qtty.value = qttysProduse[i];
+        }
+    }
+
+
     document.getElementById("inp-pret-min").onchange = function(){
         document.getElementById("infoRangeMin").innerHTML = " (" + this.value + ") ";
     }
@@ -264,5 +293,35 @@ window.addEventListener("load", function(){
                 }, 2000)
         
         }
+     }
+
+     var checkBoxes = document.getElementsByClassName("select-cos");
+     var qttys = document.getElementsByClassName("qtty");
+     var arrSelects = [];
+     for(let i = 0; i < checkBoxes.length; ++ i)
+        arrSelects.push({checkbox: checkBoxes[i], qtty: qttys[i]});
+     for(let select of arrSelects) {
+         select.checkbox.onchange = function() {
+             if(this.checked) {
+                let iduriCos = localStorage.getItem("cos-virtual");
+                if(iduriCos) {
+                    iduriCos = iduriCos.split(",");
+                }
+                else{
+                    iduriCos = [];
+                }
+
+                let val = this.value + '|' + select.qtty.value;
+                console.log(val);
+                iduriCos.push(val)
+                localStorage.setItem("cos-virtual", iduriCos.join(","));
+             }
+
+             else {
+                let iduriCos = localStorage.getItem("cos-virtual").split(',');
+                iduriCos.splice(iduriCos.indexOf(this.value + '|' + select.qtty.value), 1);
+                localStorage.setItem("cos-virtual", iduriCos.join(","));
+             }
+         }
      }
 });

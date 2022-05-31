@@ -3,13 +3,19 @@
 
 <head>
     <title>Phone Buddy - Home</title>
+    
     <meta name="keywords"
         content="phone buddy, smartphone accesories, phone case, screen protector, earbuds, phone holder, earphones, selfie stick, earbuds, screen protector, wireless charger, charging cable">
     <meta name="description"
         content="Get the best quality accesories you cand find for your smartphone right here, with just a simple click!">
+        
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <%- include("../fragmente/head.ejs"); %>
-        <link href="/Sources/css/tabel_home.css" rel="stylesheet" type="text/css">
-        <link href="/Sources/css/galerie_statica.css" rel="stylesheet" type="text/css">
+    <link href="/Sources/css/tabel_home.css" rel="stylesheet" type="text/css">
+    <link href="/Sources/css/galerie_statica.css" rel="stylesheet" type="text/css">
+    <link href="/Sources/css/calendar.css" rel="stylesheet" type="text/css">
 
         <style>
             /* table{
@@ -39,6 +45,56 @@
         table tr:nth-child(3) td{
             border: 2px solid green;
         } */
+
+        #wrapper_greet_user {
+            display:flex;
+            background: none !important;
+            width:inherit;
+            height:auto;
+            justify-content: center;
+            align-items: center;
+            background-color: none;
+            padding:0%;
+        }
+
+        #greet_user {
+            width:auto;
+            border-radius:10px;
+            border:2px solid var(--border-color);
+            height:auto;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }   
+
+        .carousel, .carousel div {
+            background-color:transparent !important;
+        }
+
+        #carousel-wrapper{
+            width:100%;
+            display:grid;
+            place-items:center;
+            background-color: transparent !important;
+        }
+
+        .carousel {
+            width:80%;
+            height:auto;
+            padding:0 !important;
+        }
+        
+        .carousel-inner{
+            padding:0 !important;
+        }
+
+        .item img{
+            width:100%;
+            border-radius:0px;
+            border:none;
+            height:auto;
+        }
+
         </style>
 </head>
 
@@ -47,23 +103,7 @@
     <%- include("../fragmente/header"); %>
         <p id="watermark">Radu<br>George-Marian</p>
         <main>
-            <% if(!locals.utilizator){ %>
-            <form id="form_inreg"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
-                <p>
-                    <label>
-                        Username: <input type="text" name="username" id="inp-username" value="prof<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
-                    </label>
-                </p> 
-                <p>
-                    <label>
-                        Parola: <input id="parl" type="password" required  name="parola" value="">
-                    </label>
-                </p>
-                <p>
-                    <input type="submit" value="Log in">
-                </p>
-                </form>
-                <% } %>
+            
             <div id="container">
                 <div id="statistics">
                     <p>USER DATA AND STATISTICS PLACEHOLDER</p>
@@ -72,15 +112,121 @@
                     </p>
                 </div>
                 <div id="online-users">
-                    <p>ONLINE USERS PLACEHOLDER</p>
+                    <h3>Online Users</h3>
+                    <%
+                        if(locals.utilizOnline) {
+                            let currTime = new Date();
+
+                    %>
+                        <% for(let u of locals.utilizOnline) { %>
+                            <% if(currTime - u.last_acc <= 5 * 60 * 1000) { %>
+                                <span style="color:lime;"><%- u.username %> (<%- u.nume %> <%- u.prenume %>)</span>;&nbsp;
+                            <% } %>
+                            <% if(currTime - u.last_acc > 5 * 60 * 1000 && currTime - u.last_acc <= 10 * 60 * 1000) { %>
+                                <span style="color:orange;"><%- u.username %> (<%- u.nume %> <%- u.prenume %>)</span>;&nbsp;
+                            <% } %>
+                            <% if(currTime - u.last_acc > 10 * 60 * 1000) { %>
+                                <span style="color:red;"><%- u.username %> (<%- u.nume %> <%- u.prenume %>)</span>;&nbsp;
+                            <% } %>
+                        <% } %>
+                <% } %>
                 </div>
-                <div id="server">
-                    <p>SITE AND SERVER INFO PLACEHOLDER</p>
+                <%
+                dataServer=new Date();
+                sirData=dataServer.getHours()+":"+dataServer.getMinutes()+":"+dataServer.getSeconds()
+
+                %>
+                <div id="server" style="text-align:center; vertical-align: center; font-weight:bold; font-size:1.5em;">
+                    <p>Server Time: <span id="data_server"><%= sirData %></span></p>
+                    <p>Client Time: <span id="data_client"></span></p>
+                    <p>Your Location: <%- locals.locatie %></p>
+                <script>
+                    function zero(nr){
+                        if (nr<10) return "0"+nr;
+                        return nr;
+                    }
+                    
+                    d=new Date()
+                    document.getElementById("data_client").innerHTML=zero(d.getHours())+":"+zero(d.getMinutes())+":"+zero(d.getSeconds());
+
+                    function actualizeazaElemData(id_div){
+                        var data_div=document.getElementById(id_div);
+                        if (data_div.innerHTML!="")
+                        {
+                            var timp=data_div.innerHTML.split(":")
+                            var dt=new Date(2000,1,15, timp[0],timp[1], timp[2] );//nu conteaza data (am pus valori random pentru an, luna si zi) ci timpul
+                        }
+                        else
+                            var dt=new Date();
+                        dt.setSeconds(dt.getSeconds()+1)
+                        data_div.innerHTML=zero(dt.getHours())+":"+zero(dt.getMinutes())+":"+zero(dt.getSeconds());
+                    }
+                    function actualizeazaData(){
+                        actualizeazaElemData("data_client");
+                        actualizeazaElemData("data_server");
+                    }
+                    actualizeazaData()
+                    setInterval(actualizeazaData,1000)
+                </script>
                 </div>
                 <div id="events">
-                    <p>EVENTS PLACEHOLDER</p>
+                    <div id="calendar">
+                        <div class="clr_bg nday">Mon</div>
+                        <div class="clr_bg nday">Tue</div>
+                        <div class="clr_bg nday">Wed</div>
+                        <div class="clr_bg nday">Thu</div>
+                        <div class="clr_bg nday">Fri</div>
+                        <div class="clr_bg nday">Sat</div>
+                        <div class="clr_bg nday">Sun</div>
+                    <% 
+                    nrZile=[31,28,31,30,31,30,31,31,30,31,30,31];
+                    
+                    d=new Date(); 
+                    anCurent=d.getFullYear();
+                    lunaCurenta=d.getMonth();
+                    if(anCurent%400==0 || (anCurent%4==0 && anCurent%100!=0)) nrZile[1]=29;
+                    let nrZileCalendar=nrZile[lunaCurenta]
+                    primaZiLuna=new Date(anCurent, lunaCurenta, 1);
+                    ultimaZiLuna=new Date(anCurent, lunaCurenta, nrZileCalendar);
+                    ziSaptPrimaZiLuna=(primaZiLuna.getDay()-1+7)%7;
+                    ziSaptUltimaZiLuna=(ultimaZiLuna.getDay()-1+7)%7;
+                    let ultimaZiDuminica = ultimaZiLuna.getDate() - ultimaZiLuna.getDay();
+                    let ultimaZiSambata = ultimaZiDuminica - 1;
+                    let ultimaZiVineri = ultimaZiSambata - 1;
+                    for (let i=0;i<ziSaptPrimaZiLuna;i++){
+                     %>
+                     <div class="clr_bg"></div> 
+                     <% } 
+        
+                     
+                     for (let i=1;i<=nrZileCalendar;i++){
+                        var obiectEvenimente=null;
+                            if(locals.evenimente)
+                                obiectEvenimente=locals.evenimente.find(function(elem){ return elem.data.valueOf()==new Date(anCurent,lunaCurenta,i).valueOf()})
+                         if(obiectEvenimente)
+                         {
+                         %>
+                         <div class="zi eveniment" title="<%= obiectEvenimente.text %>"><%= i %></div> 
+                         <%
+                         }
+                         else{
+                            if(i == 1 && primaZiLuna.getDay() == 1) { %>
+                                <div class="zi eveniment" title="First Product for FREE"><%= i %></div>
+                                <% } 
+                             else if(i == ultimaZiDuminica || i == ultimaZiSambata) { %>
+                                <div class="zi eveniment" title="Final Sales"><%= i %></div>
+                                <% } 
+                            else if(i == ultimaZiVineri && lunaCurenta == 10) { %>
+                                <div class="zi eveniment" title="Black Friday"><%= i %></div>
+                                <% }
+                            else { %>
+                                <div class="zi"><%= i %></div> 
+                                <% } 
+                        }
+                    } %>
+                    </div>
                 </div>
-                <div id="table">
+                <div id="table" style="display:grid; place-items:center;">
                     <%- locals.nrimag %>
                     <table id="tabel_main">
                         <thead>
@@ -127,10 +273,23 @@
                 </div>
                 <div id="welcome">
                     <section>
-                        <h2>Welcome to <span class="c1_here">Phone</span> <span class="c2_here">Buddy</span> online
-                            store</h2>
+                        <h2>Welcome to <span class="c1_here">Phone</span> <span class="c2_here">Buddy</span> online store</h2>
                         <section>
-                            <h3>Thank you for visiting our website &#128516;</h3>
+                            <p style="text-align:center;font-size:2rem; font-weight:bold;">Thank you for visiting our website, 	
+                                <% if(!locals.utilizator) { %>
+                                    &#128516;</p>
+                                <% } %>
+
+                                <% if(locals.utilizator) { %>
+                                    </p>
+                                    <div id="wrapper_greet_user">
+                                        <div id = "greet_user">
+                                            <img id = "poza_utiliz" style=" height:100px; width:100px; object-fit:cover; border-radius:100%;display:inline-block;" src="../../<%- locals.utilizator.cale_imagine %>%>">&nbsp;&nbsp;
+                                            <span id="nume_utiliz_afis" style="font-weight:bold;display:inline-block;"><%- locals.utilizator.username %></span>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                
                             <p><b>Phone Buddy</b> is an online store that makes it easy to find accesories that are best
                                 for
                                 your smartphone as well as for your wallet.</p>
@@ -153,6 +312,88 @@
                             </p>
                         </section>
                     </section>
+
+                    <!-- <div id="carousel-wrapper">
+                      <div class="carousel slide" id="myslider" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#myslider" data-slide-to="0" class="active"></li>
+                            <li data-target="#myslider" data-slide-to="1"></li>
+                            <li data-target="#myslider" data-slide-to="2"></li>
+                            <li data-target="#myslider" data-slide-to="3"></li>
+                            <li data-target="#myslider" data-slide-to="4"></li>
+                
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img id="img_1" src="car_holder.png" alt="First slide">
+                                <div class="carousel-caption">
+                                    <h3 id="item_1">Slide caption</h3>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img id="img_2" src="bt_speaker.jpg" alt="Second slide">
+                                <div class="carousel-caption">
+                                    <h3 id="item_2">Slide caption</h3>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img id="img_3" src="armband.png" alt="Third slide">
+                                <div class="carousel-caption">
+                                    <h3 id="item_3">Slide caption</h3>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img id="img_4" src="armband.png" alt="Third slide">
+                                <div class="carousel-caption">
+                                    <h3 id="item_4">Slide caption</h3>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img id="img_5" src="armband.png" alt="Third slide">
+                                <div class="carousel-caption">
+                                    <h3 id="item_5">Slide caption</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#myslider" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#myslider" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                    </div>
+                      <script>
+                        var produse = '<%- JSON.stringify(locals.produse) %>';
+                        produse = JSON.parse(produse);
+                        console.log(produse);
+
+                        function setImages() {
+                            var vect_prod = [];
+                            while(vect_prod.length < 5) {
+                                let randomIndex = Math.floor(Math.random() * produse.length);
+                                if(!vect_prod.includes(produse[randomIndex]))
+                                    vect_prod.push(produse[randomIndex]);
+                            }
+
+
+                            document.getElementById("img_1").src = "/Sources/pictures/products/" + vect_prod[0].imagine;
+                            document.getElementById("img_2").src = "/Sources/pictures/products/" + vect_prod[1].imagine;
+                            document.getElementById("img_3").src = "/Sources/pictures/products/" + vect_prod[2].imagine;
+                            document.getElementById("img_4").src = "/Sources/pictures/products/" + vect_prod[3].imagine;
+                            document.getElementById("img_5").src = "/Sources/pictures/products/" + vect_prod[4].imagine;
+
+                            document.getElementById("item_1").innerText = vect_prod[0].nume + '-' + vect_prod[0].pret + " RON";
+                            document.getElementById("item_2").innerText = vect_prod[1].nume + '-' + vect_prod[1].pret + " RON";
+                            document.getElementById("item_3").innerText = vect_prod[2].nume + '-' + vect_prod[2].pret + " RON";
+                            document.getElementById("item_4").innerText = vect_prod[3].nume + '-' + vect_prod[3].pret + " RON";
+                            document.getElementById("item_5").innerText = vect_prod[4].nume + '-' + vect_prod[4].pret + " RON";
+                        }
+
+                        setImages();
+                        setInterval(setImages, 15*1000);
+                    </script> -->
+
                 </div>
                 <div id="announcements">
                     <section>
@@ -297,13 +538,6 @@
                             </ul>
                             <br><br><br>
 
-                            <!-- <% for(let prod of locals.produse){ %>
-                                <p>
-                                    <%- prod.nume %>
-                                        <%- prod.pret %>
-                                </p>
-
-                                <% } %> -->
                                 </section>
                     </section>
 

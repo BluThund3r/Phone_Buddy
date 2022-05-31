@@ -68,6 +68,7 @@
 
     .iframe-tabs{
         left:1.15em;
+        transform: translate(-7%, 0%);
     }
 
     .iframescreen a{
