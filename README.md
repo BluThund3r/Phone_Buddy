@@ -8,19 +8,20 @@ The main issue at the moment would be the order placing option that doesn't work
 The online version of the website can be accessed by clicking this link: https://young-badlands-27908.herokuapp.com/
 All the files of the project can be found on the master branch.
 
-# Scren Shots:
+# Some Scren Shots:
 
-![image](https://user-images.githubusercontent.com/93129640/201101919-629ca201-af18-41da-ae16-9270d6cb8d43.png)
+Home Page:
+![image](https://user-images.githubusercontent.com/93129640/201103966-913c8818-cc2e-4596-a1cb-052dbb62708f.png)
 
+Account Page:
 ![image](https://user-images.githubusercontent.com/93129640/201102051-55361a62-0e2b-4af6-9d87-9ae64b798ac9.png)
 
-![image](https://user-images.githubusercontent.com/93129640/201102183-f12236ba-bbf0-430f-bda8-e01e4c070b23.png)
+Products Page:
+![image](https://user-images.githubusercontent.com/93129640/201104178-ec0624ac-bc0a-45dc-9654-859cb3665aa5.png)
 
-![image](https://user-images.githubusercontent.com/93129640/201102410-1cd4aa69-347d-4aff-818e-8cba472547e5.png)
+Forum Page:
+![image](https://user-images.githubusercontent.com/93129640/201104311-3297f556-ae9d-4587-9420-af6ca79a932e.png)
 
-![image](https://user-images.githubusercontent.com/93129640/201102936-cc8a7818-4865-44d2-8b35-ce1182a4e7d8.png)
-
-![image](https://user-images.githubusercontent.com/93129640/201103018-f55d0765-0ff7-42fb-b137-76c373f41d7f.png)
-
-![image](https://user-images.githubusercontent.com/93129640/201103233-4654277e-753d-4a40-9b6f-754b2bbebeb3.png)
+Shopping Cart Page:
+![image](https://user-images.githubusercontent.com/93129640/201104600-14c38107-3936-4750-b702-84f4f1397ab7.png)
 
