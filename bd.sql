@@ -213,9 +213,11 @@ CREATE TABLE public.utilizatori (
     culoare_chat character varying(50) NOT NULL,
     data_adaugare timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     cod character varying(200),
-    confirmat_mail boolean DEFAULT false,
-    ocupatie character varying(100)
+    confirmat_mail boolean DEFAULT false
 );
+
+ALTER TABLE public.utilizatori add column ocupatie character varying(100);
+ALTER TABLE public.utilizatori add column cale_imagine character varying(200);
 
 
 ALTER TABLE public.utilizatori OWNER TO postgres;
