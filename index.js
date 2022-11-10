@@ -887,7 +887,7 @@ app.post('/sterge_utiliz', function (req, res) {
         // TO DO afisare friendly pentru cazurile de succes si esec
         var rezultat = "User deleted successfully!";
         if (err)
-          rezultat = "Error while trying to delete user account!";
+          rezultat = "Error while trying to delete user account!" + err;
         else {
           trimiteMail(rezSelect.rows[0].email, "Your account has been deleted!", "We are so sorry to inform you, but your account has been DELETED by an Administrator! Goodbye!\n Phone Buddy co.", '<p>We are so sorry to inform you, but your account has been <span style="color:red;">DELETED</span> by an <span style="color:darkblue;">Administrator</span>!</p> <p>Phone Buddy co.</p>');
         }
