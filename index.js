@@ -387,17 +387,17 @@ app.post("/cumpara",function(req, res){
           }
 
           let factura= { data: new Date(), nume: req.session.utilizator.nume, prenume: req.session.utilizator.prenume, produse:v_prod};
-          obGlobal.bdMongo.collection("facturi").insertOne(factura, function(err, res) {
-              if (err) console.log(err);
-              else{
-                  console.log("Am inserat factura in mongodb");
-                  //doar de debug:
-                  obGlobal.bdMongo.collection("facturi").find({}).toArray(function(err, result) {
-                      if (err) console.log(err);
-                      else console.log(result);
-                    });
-              }
-            });
+          // obGlobal.bdMongo.collection("facturi").insertOne(factura, function(err, res) {
+          //     if (err) console.log(err);
+          //     else{
+          //         console.log("Am inserat factura in mongodb");
+          //         //doar de debug:
+          //         obGlobal.bdMongo.collection("facturi").find({}).toArray(function(err, result) {
+          //             if (err) console.log(err);
+          //             else console.log(result);
+          //           });
+          //     }
+          //   });
       });
   });
 });
