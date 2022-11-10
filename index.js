@@ -49,7 +49,7 @@ obGlobal.clientMongo.connect(url, function(err, bd) {
 });
 
 if (process.env.SITE_ONLINE) {
-  obGlobal.protocol = "http://";
+  obGlobal.protocol = "https://";
   obGlobal.numeDomeniu = "young-badlands-27908.herokuapp.com"
   var client = new Client({
     user: "yzwwchepmxctbu",
@@ -64,7 +64,7 @@ if (process.env.SITE_ONLINE) {
 }
 
 else {
-  obGlobal.protocol = "http://";
+  obGlobal.protocol = "https://";
   obGlobal.numeDomeniu = "localhost:" + obGlobal.port;
   var client = new Client({
     user: "test_user",
@@ -277,7 +277,7 @@ app.get(["/", "/index", "/home"], function (req, res) {
         var evenimente=[]
         var locatie="";
         
-        request('http://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15', //se inlocuieste cu req.ip; se testeaza doar pe Heroku / 'https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15'
+        request('https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15', //se inlocuieste cu req.ip; se testeaza doar pe Heroku / 'https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15'
             function (error, response, body) {
             if(error) {console.error('error:', error)}
             else{
