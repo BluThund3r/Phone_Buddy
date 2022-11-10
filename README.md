@@ -5,6 +5,8 @@ This website started from a project for a Web Technologies course, but it turned
 The website has plenty of features, such as sign-up page, log-in sistem, account modification page, forum, gallery, chat and much more.
 The main issue at the moment would be the order placing option that doesn't work on the online version of the website, but works completely fine on localhost. (I'm trying to solve this problem as soon as possible 😀).
 
+It also has some features for admins only: seeing all the signed-up users, seeing all the details about all the bills and having the ability to delete an user account
+
 The online version of the website can be accessed by clicking this link: https://young-badlands-27908.herokuapp.com/
 All the files of the project can be found on the master branch.
 
@@ -24,4 +26,18 @@ Forum Page:
 
 Shopping Cart Page:
 ![image](https://user-images.githubusercontent.com/93129640/201104600-14c38107-3936-4750-b702-84f4f1397ab7.png)
+
+Live Chat:
+![image](https://user-images.githubusercontent.com/93129640/201104897-0b367c5b-8db6-4eca-9ea1-74bff039b5cb.png)
+
+List of Online Users; Your IP; Server Time, User Time and User Location:
+![image](https://user-images.githubusercontent.com/93129640/201105802-59e5ce98-6d29-4aff-b1bf-f154cde833a0.png)
+
+# Admin Only Screen Shots
+Bills:
+![image](https://user-images.githubusercontent.com/93129640/201106108-9666c28e-79b1-4528-94b6-4f722217388d.png)
+
+All Users:
+![image](https://user-images.githubusercontent.com/93129640/201106184-0e155825-b223-4e86-90a8-9e2203ecdea6.png)
+
 
