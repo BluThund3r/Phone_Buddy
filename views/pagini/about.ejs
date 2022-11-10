@@ -8,17 +8,47 @@
     <meta name="description"
         content="Get the best quality accesories you cand find for your smartphone right here, with just a simple click!">
     <%- include("../fragmente/head.ejs"); %>
+
+    <style>
+        .content-about {
+            padding:2%;
+            width:auto;
+            height:auto;
+            background-color: rgba(255, 255, 255, 0.217);
+            border: 2px solid var(--border-color);
+            border-radius:10px;
+        }
+
+        h2 {
+            text-align: center;
+            width:inherit;
+        }
+    </style>
 </head>
 
 <body>
     <%- include("../fragmente/header.ejs"); %>
     <main>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+        <div class="content-about">
+            <section id="introduce">
+                <h2>Let us introduce ourselves</h2>
+                <p>Phone Buddy is a company that has only one purpose... To get to be the best friend of you and your phone &#128516;</p>
+                <p>Here, at Phone Buddy we provide the best phone accessories for our customers, in order to match their personality and 
+                    be gentle with their money too.
+                </p>
+                <p> Whatever you want when it comes to phone accessories, this is THE online store where you will find it.</p>
+            </section>
+        </div>
+        <br>
+        <div class="content-about">
+            <section id="history">
+                <h2>Our history</h2>
+                <p>Phone Buddy started at first as a student project for my Web Development course at the University of Bucharest, in which I got interested rapidly.</p>
+                <p>After a few years, me and a group of friends decided to take a leap of faith and start this business, our business</p>
+                <p>Even now, after years have passed, I still can't believe how far this project has gone and how much I achieved with a simple student project website.</p>
+                
+            </section>
+        </div>
     </main>
     <%- include("../fragmente/footer.ejs"); %>
     

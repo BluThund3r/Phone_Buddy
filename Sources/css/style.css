@@ -389,9 +389,31 @@ hr::after{
 
 
 @media print {
+
+    #time, h3.forum {
+        background-color:white;
+    }
+
+    #user_place, #calculare, #sorting, #filters, #imag-produs, .img_cos, #greet_user, #user_profile_photo, .celula-sterge, #delete_column    {
+        display: none !important;
+    }
+
+    a[href="/gallery"]{
+        display: none !important;
+    }
+
+    #btn_tema{
+        display:none !important;
+    }
+
     body{
         background-image:none;
         background-color: white !important;
+        
+    }
+
+    main{
+        color:black !important;
     }
     
     h1, h2, h3{

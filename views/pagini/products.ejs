@@ -15,7 +15,7 @@
     <main>
 
         <h2>Products</h2>
-        <details>
+        <details id="filters">
             <summary>Filter products</summary>
         <label> Name: <input type="text" id="inp-nume"></label>
         <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
@@ -64,7 +64,7 @@
 
         <label style="display:block;">Description contains:
             <textarea id="inp-descriere"></textarea>
-        </label>
+        </label><br>
 
         <label style="display:block;">Materials:
             <select id="inp-materiale" multiple size="3">
@@ -82,7 +82,7 @@
         <button id="filtrare">Filter</button> <button id="resetare">Reset</button><br/>
     </details>
     <br>
-    <details>
+    <details id="sorting">
         <summary>Sort products</summary>
         <button id="sortCrescNume">Sort ascending by name and description length</button> 
         <button id="sortDescrescNume">Sort descending by name and description length</button><br> 

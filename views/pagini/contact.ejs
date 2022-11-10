@@ -29,7 +29,7 @@
 						let dt=new Date(msg.attributes.data);
 						%>
 						<article class="mesaj-c">
-							<h3><span class="username"><%= msg.attributes.username%></span> says:</h3>
+							<h3 class="forum"><span class="username"><%= msg.attributes.username%></span> says:</h3>
 							<p id = "mesaj" style="color: <%= msg.attributes.color %>;"><%= msg.elements[0].text %></p>
 							<p id="time"><small><time datetime="<%= dt.getUTCDate() %>"><%= dt.toLocaleString('en-EN', {
 														weekday: 'short', 

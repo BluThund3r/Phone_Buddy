@@ -40,6 +40,7 @@ window.addEventListener("DOMContentLoaded",function(){
 				p.innerHTML = prod.nume;
 				p.style.fontWeight = "bold";
 				var imagine = document.createElement("img");
+				imagine.className = "img_cos";
 				imagine.src = "/Sources/pictures/products/" + prod.imagine;
 				article.appendChild(imagine);
 				article.appendChild(p);

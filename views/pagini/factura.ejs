@@ -4,10 +4,6 @@
 		<meta charset="utf-8"/>
 		<title>Bill</title>
 		<style>
-			body{
-				counter-reset: cnt;
-			}
-
 			#tabl{
 				border-collapse:collapse;
 			}
@@ -16,10 +12,6 @@
 				border:1px solid black;
 			}
 			
-			span.aici_counter::before {
-				counter-increment: cnt;
-				content: counter(cnt) ". ";
-			}
 
 		</style>
 		<link rel="stylesheet" href="<%- locals.protocol%><%- locals.domeniu %>/Sources/css/factura.css" type="text/css">
@@ -50,11 +42,13 @@
 			<tbody>
                 <% 
 				var suma=0;
+				var counter = 0;
 				for (let prod of locals.produse) {
+					counter ++;
 					suma+= parseFloat(prod.pret) * parseFloat(prod.qtty);
 					 %>
                     <tr>
-                        <td><span class="aici_counter"><%- prod.nume %></span></td>
+                        <td><span><%- counter %>. <%- prod.nume %></span></td>
 						<td><%- prod.pret %> RON</td>
 						<td><%- prod.qtty %></td>
                         <td><%- parseFloat(prod.pret) * parseFloat(prod.qtty) %> RON</td>

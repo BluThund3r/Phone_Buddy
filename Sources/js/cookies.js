@@ -32,7 +32,7 @@ function checkBannerCookie() {
         document.getElementById("banner_cookies").style.display = "block";
         document.getElementById("ok_cookies").onclick = function() {
             document.getElementById("banner_cookies").style.display = "none";
-            setCookie("acceptat_banner", "true", 12*60*60*1000);
+            setCookie("acceptat_banner", "true", 5*1000);
         }
     }
 }

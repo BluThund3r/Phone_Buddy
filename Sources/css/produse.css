@@ -104,6 +104,11 @@ main{
     cursor: pointer;
 }
 
+#inp-materiale {
+    height:100%;
+    width:10%;
+}
+
 @media screen and (max-width:750px){
     .grid-produse{
         grid-template-columns: 1fr;

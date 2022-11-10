@@ -33,7 +33,7 @@ const obGlobal = {
   numeDomeniu: null,
   clientMongo:mongodb.MongoClient,
   bdMongo:null,
-  port: 8080,
+  port: 5000,
   sirAlphaNum: "",
   extensiiPoze: ["jpg", "jpeg", "png", "bmp", "svg"]
 }
