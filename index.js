@@ -49,7 +49,7 @@ obGlobal.clientMongo.connect(url, function(err, bd) {
 });
 
 if (process.env.SITE_ONLINE) {
-  obGlobal.protocol = "https://";
+  obGlobal.protocol = "http://";
   obGlobal.numeDomeniu = "young-badlands-27908.herokuapp.com"
   var client = new Client({
     user: "yzwwchepmxctbu",
@@ -277,7 +277,7 @@ app.get(["/", "/index", "/home"], function (req, res) {
         var evenimente=[]
         var locatie="";
         
-        request('https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15', //se inlocuieste cu req.ip; se testeaza doar pe Heroku / 'https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15'
+        request('http://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15', //se inlocuieste cu req.ip; se testeaza doar pe Heroku / 'https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15'
             function (error, response, body) {
             if(error) {console.error('error:', error)}
             else{
@@ -374,7 +374,7 @@ app.post("/cumpara",function(req, res){
           var numefis="./temp/test"+(new Date()).getTime()+".pdf";
           fs.writeFileSync(numefis,pdf);
           let mText=`Dear ${req.session.utilizator.username}, thank you for ordering from our online store! We attached the bill to this email.`;
-      let mHtml=`<h1>Hello there!</h1><p>${mText}</p>`;
+          let mHtml=`<h1>Hello there!</h1><p>${mText}</p>`;
 
           trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
                                                   filename: 'Bill.pdf',
