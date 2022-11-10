@@ -368,37 +368,37 @@ app.post("/cumpara",function(req, res){
 
       let file = { content: juice(rezFactura, {inlinePseudoElements:true}) };
      
-      html_to_pdf.generatePdf(file, options).then(function(pdf) {
-          if(!fs.existsSync("./temp"))
-              fs.mkdirSync("./temp");
-          var numefis="./temp/test"+(new Date()).getTime()+".pdf";
-          fs.writeFileSync(numefis,pdf);
-          let mText=`Dear ${req.session.utilizator.username}, thank you for ordering from our online store! We attached the bill to this email.`;
-          let mHtml=`<h1>Hello there!</h1><p>${mText}</p>`;
+      // html_to_pdf.generatePdf(file, options).then(function(pdf) {
+      //     if(!fs.existsSync("./temp"))
+      //         fs.mkdirSync("./temp");
+      //     var numefis="./temp/test"+(new Date()).getTime()+".pdf";
+      //     fs.writeFileSync(numefis,pdf);
+      //     let mText=`Dear ${req.session.utilizator.username}, thank you for ordering from our online store! We attached the bill to this email.`;
+      //     let mHtml=`<h1>Hello there!</h1><p>${mText}</p>`;
 
-          // trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
-          //                                         filename: 'Bill.pdf',
-          //                                         content: fs.readFileSync(numefis)
-          //                                     }]);
-          res.write("<h2>Order Placed Successfully!</h2>");res.end();
-          let v_prod = [];
-          for(let prod of rez.rows) {
-            v_prod.push({nume: prod.nume, pret: prod.pret, cantitate: prod.qtty});
-          }
+      //     // trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
+      //     //                                         filename: 'Bill.pdf',
+      //     //                                         content: fs.readFileSync(numefis)
+      //     //                                     }]);
+      //     res.write("<h2>Order Placed Successfully!</h2>");res.end();
+      //     let v_prod = [];
+      //     for(let prod of rez.rows) {
+      //       v_prod.push({nume: prod.nume, pret: prod.pret, cantitate: prod.qtty});
+      //     }
 
-          let factura= { data: new Date(), nume: req.session.utilizator.nume, prenume: req.session.utilizator.prenume, produse:v_prod};
-          // obGlobal.bdMongo.collection("facturi").insertOne(factura, function(err, res) {
-          //     if (err) console.log(err);
-          //     else{
-          //         console.log("Am inserat factura in mongodb");
-          //         //doar de debug:
-          //         obGlobal.bdMongo.collection("facturi").find({}).toArray(function(err, result) {
-          //             if (err) console.log(err);
-          //             else console.log(result);
-          //           });
-          //     }
-          //   });
-      });
+      //     let factura= { data: new Date(), nume: req.session.utilizator.nume, prenume: req.session.utilizator.prenume, produse:v_prod};
+      //     // obGlobal.bdMongo.collection("facturi").insertOne(factura, function(err, res) {
+      //     //     if (err) console.log(err);
+      //     //     else{
+      //     //         console.log("Am inserat factura in mongodb");
+      //     //         //doar de debug:
+      //     //         obGlobal.bdMongo.collection("facturi").find({}).toArray(function(err, result) {
+      //     //             if (err) console.log(err);
+      //     //             else console.log(result);
+      //     //           });
+      //     //     }
+      //     //   });
+      // });
   });
 });
 
@@ -1109,7 +1109,7 @@ client.query("select id from accessories", function(err, rez){
 
     QRCode.toFile(cale_qr + "/products.png", obGlobal.protocol+obGlobal.numeDomeniu+"/products");
 });
-
+ 
 // app.listen(8080);
 var s_port = process.env.PORT || obGlobal.port;
 server.listen(s_port);
