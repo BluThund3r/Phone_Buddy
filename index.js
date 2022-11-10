@@ -376,10 +376,10 @@ app.post("/cumpara",function(req, res){
           let mText=`Dear ${req.session.utilizator.username}, thank you for ordering from our online store! We attached the bill to this email.`;
           let mHtml=`<h1>Hello there!</h1><p>${mText}</p>`;
 
-          trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
-                                                  filename: 'Bill.pdf',
-                                                  content: fs.readFileSync(numefis)
-                                              }]);
+          // trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
+          //                                         filename: 'Bill.pdf',
+          //                                         content: fs.readFileSync(numefis)
+          //                                     }]);
           res.write("<h2>Order Placed Successfully!</h2>");res.end();
           let v_prod = [];
           for(let prod of rez.rows) {
