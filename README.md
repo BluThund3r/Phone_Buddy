@@ -7,7 +7,8 @@ The main issue at the moment would be the order placing option that doesn't work
 
 It also has some features for admins only: seeing all the signed-up users, seeing all the details about all the bills and having the ability to delete an user account
 
-The online version of the website can be accessed by clicking this link: https://young-badlands-27908.herokuapp.com/
+The online version of the website can be accessed by clicking this link: https://young-badlands-27908.herokuapp.com/.
+
 All the files of the project can be found on the master branch.
 
 # Some Scren Shots:
