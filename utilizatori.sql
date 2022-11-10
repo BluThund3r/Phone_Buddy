@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS utilizatori (
    culoare_chat VARCHAR(50) NOT NULL,
    data_adaugare TIMESTAMP DEFAULT current_timestamp,
    cod character varying(200),
-   confirmat_mail boolean DEFAULT false
+   confirmat_mail boolean DEFAULT false,
+   ocupatie character varying(100)
 );
 
 CREATE TABLE IF NOT EXISTS accesari (

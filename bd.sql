@@ -213,7 +213,8 @@ CREATE TABLE public.utilizatori (
     culoare_chat character varying(50) NOT NULL,
     data_adaugare timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     cod character varying(200),
-    confirmat_mail boolean DEFAULT false
+    confirmat_mail boolean DEFAULT false,
+    ocupatie character varying(100)
 );
 
 
