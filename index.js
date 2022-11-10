@@ -380,7 +380,7 @@ app.post("/cumpara",function(req, res){
       //     //                                         filename: 'Bill.pdf',
       //     //                                         content: fs.readFileSync(numefis)
       //     //                                     }]);
-      //     res.write("<h2>Order Placed Successfully!</h2>");res.end();
+          res.write("<h2>Order Placed Successfully!</h2>");res.end();
       //     let v_prod = [];
       //     for(let prod of rez.rows) {
       //       v_prod.push({nume: prod.nume, pret: prod.pret, cantitate: prod.qtty});
