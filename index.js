@@ -24,6 +24,9 @@ const mongodb=require('mongodb');
 const { cookie } = require("request");
 
 var url = "mongodb://localhost:27017";
+if(process.env.SITE_ONLINE) {
+  url = "mongodb+srv://ProiectTW:EBcsjeE8qcsdPu0E@cluster0.goevboa.mongodb.net/?retryWrites=true&w=majority";
+}
 
 const obGlobal = {
   obImagini: null,

@@ -217,7 +217,7 @@ CREATE TABLE public.utilizatori (
 );
 
 ALTER TABLE public.utilizatori add column ocupatie character varying(100);
-ALTER TABLE public.utilizatori add column cale_imagine character varying(200);
+ALTER TABLE public.utilizatori add column cale_imagine character varying(100);
 
 
 ALTER TABLE public.utilizatori OWNER TO postgres;
@@ -428,7 +428,7 @@ ALTER TABLE ONLY public.utilizatori
 --
 
 ALTER TABLE ONLY public.accesari
-    ADD CONSTRAINT accesari_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.utilizatori(id);
+    drop constraint accesari_user_id_fkey;
 
 
 --
