@@ -350,7 +350,7 @@ app.post("/produse_cos", function(req, res) {
 
 app.post("/cumpara",function(req, res){
   if(process.env.SITE_ONLINE) {
-    res.write("<h2>Order Placed Successfully!</h2>");res.end();
+    res.write("<h2>Action not available at the moment... :(</h2>");res.end();
   }
   if(!req.session.utilizator){
       res.write("<h2>You have to log in before completing the order!</h2>");res.end();
