@@ -737,7 +737,7 @@ app.post("/inreg", function (req, res) {
           client.query(comandaInserare, [campuriText.username, campuriText.nume, campuriText.prenume, parolaCriptata, campuriText.email, campuriText.culoare_chat, token, campuriText.ocupatie, calePoza], function (err, rezInserare) {
             if (err) {
               console.log(err);
-              res.render("pagini/inregistrare", { err: "Database error!" });
+              res.render("pagini/inregistrare", { err: "Database error!" + err });
             }
             else
               res.render("pagini/inregistrare", { raspuns: "Details have been saved." });
