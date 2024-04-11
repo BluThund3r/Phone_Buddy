@@ -379,10 +379,10 @@ app.post("/cumpara",function(req, res){
           let mText=`Dear ${req.session.utilizator.username}, thank you for ordering from our online store! We attached the bill to this email.`;
           let mHtml=`<h1>Hello there!</h1><p>${mText}</p>`;
 
-          // trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
-          //                                         filename: 'Bill.pdf',
-          //                                         content: fs.readFileSync(numefis)
-          //                                     }]);
+          trimiteMail(req.session.utilizator.email,"Bill", mText, mHtml, [{ 
+                                                  filename: 'Bill.pdf',
+                                                  content: fs.readFileSync(numefis)
+                                              }]);
           res.write("<h2>Order Placed Successfully!</h2>");res.end();
           let v_prod = [];
           for(let prod of rez.rows) {
@@ -390,17 +390,17 @@ app.post("/cumpara",function(req, res){
           }
 
           let factura= { data: new Date(), nume: req.session.utilizator.nume, prenume: req.session.utilizator.prenume, produse:v_prod};
-          // obGlobal.bdMongo.collection("facturi").insertOne(factura, function(err, res) {
-          //     if (err) console.log(err);
-          //     else{
-          //         console.log("Am inserat factura in mongodb");
-          //         //doar de debug:
-          //         obGlobal.bdMongo.collection("facturi").find({}).toArray(function(err, result) {
-          //             if (err) console.log(err);
-          //             else console.log(result);
-          //           });
-          //     }
-          //   });
+          obGlobal.bdMongo.collection("facturi").insertOne(factura, function(err, res) {
+              if (err) console.log(err);
+              else{
+                  console.log("Am inserat factura in mongodb");
+                  //doar de debug:
+                  obGlobal.bdMongo.collection("facturi").find({}).toArray(function(err, result) {
+                      if (err) console.log(err);
+                      else console.log(result);
+                    });
+              }
+            });
       });
   });
 });
