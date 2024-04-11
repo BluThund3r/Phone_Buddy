@@ -1,4 +1,5 @@
 # Phone Buddy
+
 Phone Buddy is a website project for a fictional company that sells phone accessories.
 This website started from a project for a Web Technologies course, but it turned out to be very interesting to me, so I put a lot of effort into making the best out of it and improving my knowledge of HTML, CSS and JavaScript.
 
@@ -7,9 +8,9 @@ The main issue at the moment would be the order placing option that doesn't work
 
 It also has some features for admins only: seeing all the signed-up users, seeing all the details about all the bills and having the ability to delete an user account
 
-The online version of the website can be accessed by clicking this link: https://young-badlands-27908.herokuapp.com/.
+~~The online version of the website can be accessed by clicking this link: https://young-badlands-27908.herokuapp.com/.~~ (Heroku is not free anymore :( )
 
-All the files of the project can be found on the master branch.
+All the files of the project can be found on the **master** branch.
 
 # Some Scren Shots:
 
@@ -35,10 +36,9 @@ List of Online Users; Your IP; Server Time, User Time and User Location:
 ![image](https://user-images.githubusercontent.com/93129640/201105802-59e5ce98-6d29-4aff-b1bf-f154cde833a0.png)
 
 # Admin Only Screen Shots
+
 Bills:
 ![image](https://user-images.githubusercontent.com/93129640/201106108-9666c28e-79b1-4528-94b6-4f722217388d.png)
 
 All Users:
 ![image](https://user-images.githubusercontent.com/93129640/201107499-516fee4d-9872-4527-b507-9ac7b45493c1.png)
-
-
